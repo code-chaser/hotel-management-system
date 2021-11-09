@@ -1,3 +1,5 @@
+package com.hms.rooms;
+
 public class Room {
     public static void main(String[] args) {
         Room room1 = new Room();
