@@ -9,16 +9,12 @@ abstract class Person {
     int age;
     char gender;
     String mobNumber;
-    com.hms.Address add;
+    com.hms.persons.Address add;
     String cat;
 
-    Person() {
+    public Person() {
         id = -1;
     }
-
-    public abstract void fillMap();
-
-    public abstract void saveMap();
 
     public void addPerson(int minAge, int maxAge) {
         Scanner cin = new Scanner(System.in);
@@ -67,12 +63,12 @@ abstract class Person {
         if (id == -1)
             return;
         System.out.print("\nDetails:\n");
-        System.out.print("ID              :" + id + "\n");
-        System.out.print("Name            :" + name + "\n");
-        System.out.print("Gender          :" + gender + "\n");
-        System.out.print("Age             :" + age + "\n");
-        System.out.print("Mobile          :" + mobNumber + "\n");
-        System.out.print("Address         :\n");
+        System.out.print("ID              : " + id + "\n");
+        System.out.print("Name            : " + name + "\n");
+        System.out.print("Gender          : " + gender + "\n");
+        System.out.print("Age             : " + age + "\n");
+        System.out.print("Mobile          : " + mobNumber + "\n");
+        System.out.print("Address         : ");
         add.print();
         return;
     }
@@ -81,11 +77,11 @@ abstract class Person {
         if (id == -1)
             return;
         System.out.print("\nHistory Details:\n");
-        System.out.print("Name            :" + name + "\n");
-        System.out.print("Gender          :" + gender + "\n");
-        System.out.print("Age             :" + age + "\n");
-        System.out.print("Mobile          :" + mobNumber + "\n");
-        System.out.print("Address         :\n");
+        System.out.print("Name            : " + name + "\n");
+        System.out.print("Gender          : " + gender + "\n");
+        System.out.print("Age             : " + age + "\n");
+        System.out.print("Mobile          : " + mobNumber + "\n");
+        System.out.print("Address         : ");
         add.print();
         return;
     }
