@@ -103,7 +103,7 @@ public class Filehandling {
 
                 Vector<Integer> roomVector = _guest.getRoomNumbers();
 
-                for (int i = 0; i < roomVector.size() - 1; i++) {
+                for (Integer i = 0; i < roomVector.size() - 1; i++) {
                     s.append(roomVector.get(i).toString() + ',');
                 }
                 s.append(roomVector.get(roomVector.size() - 1).toString());

@@ -26,8 +26,8 @@ public class Staff extends Person {
         this.assign(s);
     }
 
-    public Staff(int id, String name, int age, char gender, String mobNumber, com.hms.persons.Address add, String cat,
-            String type, String salary, int workingDays, String loginId, String password) {
+    public Staff(Integer id, String name, Integer age, char gender, String mobNumber, com.hms.persons.Address add, String cat,
+            String type, String salary, Integer workingDays, String loginId, String password) {
         super(id, name, age, gender, mobNumber, add, cat);
         this.type = type;
         this.salary = salary;
@@ -68,7 +68,7 @@ public class Staff extends Person {
         return workingDays;
     }
 
-    public void setWorkingDays(int workingDays) {
+    public void setWorkingDays(Integer workingDays) {
         this.workingDays = workingDays;
     }
 
@@ -76,7 +76,7 @@ public class Staff extends Person {
         return password;
     }
 
-    public void addPerson(int minAge, int maxAge) {
+    public void addPerson(Integer minAge, Integer maxAge) {
         super.addPerson(18, 60);
         if (this.id == -2)
             return;
@@ -124,7 +124,7 @@ public class Staff extends Person {
         Scanner cin = new Scanner(System.in);
         boolean done = false;
         while (!done) {
-            int opt = 0;
+            Integer opt = 0;
             String inp;
             System.out.print(
                     "\nSearch using: (select one of the following options)\n1. ID\n2. Name\n3. Mobile Number\n4. Type\n");
@@ -140,7 +140,7 @@ public class Staff extends Person {
             switch (opt) {
 
             case 1:
-                int reqId = 0;
+                Integer reqId = 0;
                 System.out.print("\nEnter ID:\n");
                 inp = cin.next();
                 inp += cin.nextLine();
@@ -171,7 +171,7 @@ public class Staff extends Person {
                 inp = cin.next();
                 inp += cin.nextLine();
                 reqName = inp;
-                int found = 0;
+                Integer found = 0;
                 TreeMap<Integer, Staff> MatchingRecords = new TreeMap<Integer, Staff>();
                 for (Map.Entry<Integer, Staff> entry : com.hms.Hotel.staffList.entrySet())
                     if (entry.getValue().name.equals(reqName)) {
@@ -249,7 +249,7 @@ public class Staff extends Person {
                 inp = cin.next();
                 inp += cin.nextLine();
                 reqMobNumber = inp;
-                int found1 = 0;
+                Integer found1 = 0;
                 TreeMap<Integer, Staff> MatchingRecords1 = new TreeMap<Integer, Staff>();
                 for (Map.Entry<Integer, Staff> entry : com.hms.Hotel.staffList.entrySet())
                     if (entry.getValue().mobNumber.equals(reqMobNumber)) {
@@ -328,7 +328,7 @@ public class Staff extends Person {
                 inp = cin.next();
                 inp += cin.nextLine();
                 reqType = inp;
-                int found2 = 0;
+                Integer found2 = 0;
                 TreeMap<Integer, Staff> MatchingRecords2 = new TreeMap<Integer, Staff>();
                 for (Map.Entry<Integer, Staff> entry : com.hms.Hotel.staffList.entrySet())
                     if (entry.getValue().type.equals(reqType)) {

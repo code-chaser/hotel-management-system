@@ -17,7 +17,7 @@ abstract class Person {
     }
     // add contructor
 
-    public Person(int id, String name, int age, char gender, String mobNumber, com.hms.persons.Address add,
+    public Person(Integer id, String name, Integer age, char gender, String mobNumber, com.hms.persons.Address add,
             String cat) {
         this.id = id;
         this.name = name;
@@ -28,7 +28,7 @@ abstract class Person {
         this.cat = cat;
     }
 
-    public void addPerson(int minAge, int maxAge) {
+    public void addPerson(Integer minAge, Integer maxAge) {
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter name:\n");

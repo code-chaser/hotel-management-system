@@ -51,11 +51,11 @@ public class Address {
     public void strToAdd(String add) {
         String[] arr = add.split("`");
         line1 = arr[0];
-        for (int i = 0; i < line1.length(); i++)
+        for (Integer i = 0; i < line1.length(); i++)
             if (line1.charAt(i) == '^')
                 line1 = line1.substring(0, i) + ',' + line1.substring(i + 1);
         line2 = arr[1];
-        for (int i = 0; i < line2.length(); i++)
+        for (Integer i = 0; i < line2.length(); i++)
             if (line2.charAt(i) == '^')
                 line2 = line2.substring(0, i) + ',' + line2.substring(i + 1);
         city = arr[2];
@@ -73,7 +73,7 @@ public class Address {
         add += state + '`';
         add += pinCode + '`';
         add += country + '`';
-        for (int i = 0; i < add.length(); i++)
+        for (Integer i = 0; i < add.length(); i++)
             if (add.charAt(i) == ',')
                 add = add.substring(0, i) + '^' + add.substring(i + 1);
         return add;
