@@ -48,7 +48,7 @@ public class Address {
         return;
     }
 
-    public void strToAdd(String add) {
+    public synchronized void strToAdd(String add) {
         String[] arr = new String[6];
         String temp = "";
         Integer count = 0;
@@ -77,7 +77,7 @@ public class Address {
         return;
     }
 
-    public String addToStr() {
+    public synchronized String addToStr() {
         String add = "";
         add += line1 + '`';
         add += line2 + '`';
