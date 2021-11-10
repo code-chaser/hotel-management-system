@@ -1,10 +1,12 @@
 package com.hms.filehandling;
 
+import java.io.FileWriter;
 import java.util.Map;
 import com.hms.Hotel;
 import com.hms.persons.Guest;
 import com.hms.persons.Staff;
 import com.hms.rooms.Room;
+
 /**
  * Work In Progress , Do not merge yet.
  */
@@ -12,13 +14,45 @@ public class Filehandling {
     /**
      * Function to overwrite CSV files with data stored in Maps.
      */
-    public void WriteToCSV(){
-        for(Map.Entry<Integer,Room> entry : Hotel.roomsList.entrySet()){
 
+    public void WriteToCSV(){
+         //Rooms
+        for(Map.Entry<Integer,Room> entry : Hotel.roomsList.entrySet()){
+            Room _room = entry.getValue();
+            try(FileWriter writer = new FileWriter("rooms.csv")){
+            /**
+             * Structure of CSV
+             * S.No. | roomNumber | capacity | desc | roomSize | available
+             *       |            |          |      |          |          
+             */
+            StringBuilder s = new StringBuilder();
+            s.append(entry.getKey().toString()+',');
+            s.append(_room.getRoomNumber().toString()+',');
+            s.append(_room.getCapacity().toString()+',');
+            s.append(_room.getDesc().toString()+',');
+            s.append(_room.getRoomSize().toString()+',');
+
+            if(_room.isAvailable()){
+                s.append('Y');
+            }
+            else s.append('N');
+
+            s.append('\n');
+
+            writer.append(s.toString());
+            writer.close();
         }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        }
+
+        //Staff
         for(Map.Entry<Integer,Staff> entry : Hotel.staffList.entrySet()){
             
         }
+
+        //Guest
         for(Map.Entry<Integer,Guest> entry : Hotel.guestsList.entrySet()){
             
         }
