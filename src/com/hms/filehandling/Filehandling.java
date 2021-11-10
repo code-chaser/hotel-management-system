@@ -56,7 +56,7 @@ public class Filehandling {
             try (FileWriter writer = new FileWriter("resources/staff.csv")) {
                 /**
                  * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
-                 * category | type | salary | workingDays
+                 * category | type | salary | workingDays | LoginID | Password
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_staff.getId().toString() + ',');
@@ -69,6 +69,8 @@ public class Filehandling {
                 s.append(_staff.getType() + ',');
                 s.append(_staff.getSalary() + ',');
                 s.append(_staff.getWorkingDays().toString() + ',');
+                s.append(_staff.getLoginId()+',');
+                s.append(_staff.getPassword());
 
                 s.append('\n');
 
@@ -99,12 +101,12 @@ public class Filehandling {
                 s.append(_guest.getCategory() + ',');
                 s.append(_guest.getAadharNumber() + ',');
 
-                Vector <Integer> roomVector = _guest.getRoomNumbers();
+                Vector<Integer> roomVector = _guest.getRoomNumbers();
 
                 for (int i = 0; i < roomVector.size() - 1; i++) {
                     s.append(roomVector.get(i).toString() + ',');
                 }
-                s.append(roomVector.get(roomVector.size()-1).toString());
+                s.append(roomVector.get(roomVector.size() - 1).toString());
                 s.append('\n');
 
                 writer.write(s.toString());
@@ -169,6 +171,8 @@ public class Filehandling {
             while ((line = br.readLine()) != null) // returns a Boolean value
             {
                 String[] guestsArray = line.split(","); // use comma as separator
+
+                
 
             }
             br.close();

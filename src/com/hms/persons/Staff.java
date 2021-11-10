@@ -63,6 +63,10 @@ public class Staff extends Person {
         this.workingDays = workingDays;
     }
 
+    public String getPassword(){
+        return password;
+    }
+
     public void addPerson(int minAge, int maxAge) {
         super.addPerson(18, 60);
         if (this.id == -2)
