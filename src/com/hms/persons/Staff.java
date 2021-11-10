@@ -22,8 +22,8 @@ public class Staff extends Person {
         id = -1;
         cat = "Staff";
     }
-    
-    public Staff(Staff s){
+
+    public Staff(Staff s) {
         this.assign(s);
     }
 
@@ -65,7 +65,8 @@ public class Staff extends Person {
 
     public void addPerson(int minAge, int maxAge) {
         super.addPerson(18, 60);
-        if(this.id == -2) return;
+        if (this.id == -2)
+            return;
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter type of staff:\n");
@@ -76,11 +77,10 @@ public class Staff extends Person {
         salary = inp;
         workingDays = 0;
         cat = "Staff";
-        if (com.hms.Hotel.staffList.entrySet().size() > 0){
+        if (com.hms.Hotel.staffList.entrySet().size() > 0) {
             this.id = com.hms.Hotel.staffList.lastEntry().getKey() + 1;
             com.hms.Hotel.staffList.put(this.id, new Staff(this));
-        }
-        else
+        } else
             com.hms.Hotel.staffList.put(1, new Staff(this));
         return;
     }
@@ -88,7 +88,7 @@ public class Staff extends Person {
     public void printDetails() {
         if (id == -1)
             return;
-        
+
         System.out.println("\nStaff Details:");
         super.printDetails();
         System.out.print("Type            :" + type + "\n");
@@ -288,6 +288,23 @@ public class Staff extends Person {
                             done2 = done = true;
                             break;
                         }
+                        if (done)
+                            break;
+                        else {
+                            System.out.print("\nNo matching record found!\n");
+                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                            while (!inp.equals("Y") && !inp.equals("N")) {
+                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                                inp = cin.next();
+                                inp += cin.nextLine();
+                            }
+                            if (inp.equals("N")) {
+                                done = true;
+                                break;
+                            }
+                        }
                     }
                 }
                 break;
@@ -348,6 +365,23 @@ public class Staff extends Person {
                             this.assign(MatchingRecords2.get(id));
                             done2 = done = true;
                             break;
+                        }
+                        if (done)
+                            break;
+                        else {
+                            System.out.print("\nNo matching record found!\n");
+                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                            while (!inp.equals("Y") && !inp.equals("N")) {
+                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                                inp = cin.next();
+                                inp += cin.nextLine();
+                            }
+                            if (inp.equals("N")) {
+                                done = true;
+                                break;
+                            }
                         }
                     }
                 }
