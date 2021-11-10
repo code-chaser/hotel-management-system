@@ -50,12 +50,49 @@ public class Filehandling {
 
         //Staff
         for(Map.Entry<Integer,Staff> entry : Hotel.staffList.entrySet()){
-            
+          
+            Staff _staff = entry.getValue();
+
+            try(FileWriter writer = new FileWriter("resources/staff.csv")){
+            /**
+             * Structure of staff.csv
+             *  id | name | age | gender | mobileNumber | address | category | type | salary | workingDays
+             *     |      |     |        |              |         |          |      |        |
+             */
+                StringBuilder s = new StringBuilder();
+    
+                s.append('\n');
+        
+                writer.write(s.toString());
+                writer.close();
+            }
+            catch (Exception e) {
+                System.out.println(e);
+              }
+
         }
 
         //Guest
         for(Map.Entry<Integer,Guest> entry : Hotel.guestsList.entrySet()){
+            Guest _guest = entry.getValue();
+
+            try(FileWriter writer = new FileWriter("resources/guests.csv")){
+            /**
+             * Structure of staff.csv
+             *  id | name | age | gender | mobileNumber | address | category | aadharNumber | Rooms Vector... 
+             *     |      |     |        |              |         |          |              |
+             */
+                    StringBuilder s = new StringBuilder();
+        
+                    s.append('\n');
             
+                    writer.write(s.toString());
+                    writer.close();
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                  }
+
         }
     }
     /**
