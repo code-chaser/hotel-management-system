@@ -13,19 +13,98 @@ import com.hms.persons.Guest;
 import com.hms.persons.Staff;
 import com.hms.rooms.Room;
 
-public class FileHandling {
-    /**
-     * Function to overwrite CSV files with data stored in Maps.
-     */
-    public static void WriteToCSV() {
-        // Rooms
+class ThreadForRooms1 implements Runnable {
+    @Override
+    public void run() {
+        Hotel.roomsList.clear();
+        String line = "";
+        try {
+            // parsing a CSV file into BufferedReader class constructor
+            BufferedReader br = new BufferedReader(new FileReader("resources/rooms.csv"));
+            while ((line = br.readLine()) != null) // returns a Boolean value
+            {
+                String[] roomArray = line.split(","); // use comma as separator
+                boolean avail;
+                if (roomArray[4].equals("Y"))
+                    avail = true;
+                else
+                    avail = false;
+                Room _room = new Room(avail, !avail, Integer.parseInt(roomArray[1]), roomArray[2],
+                        Integer.parseInt(roomArray[3]), Integer.parseInt(roomArray[0]));
+                Hotel.roomsList.put(Integer.parseInt(roomArray[0]), _room);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class ThreadForStaff1 implements Runnable {
+    @Override
+    public void run() {
+        Hotel.staffList.clear();
+        String line = "";
+        try {
+            // parsing a CSV file into BufferedReader class constructor
+            BufferedReader br = new BufferedReader(new FileReader("resources/guests.csv"));
+            while ((line = br.readLine()) != null) // returns a Boolean value
+            {
+                String[] guestsArray = line.split(","); // use comma as separator
+                Address _add1 = new Address();
+                _add1.strToAdd(guestsArray[5]);
+                Vector<Integer> roomNumVect = new Vector<Integer>();
+                for (int i = 8; i < guestsArray.length; i++) {
+                    roomNumVect.add(Integer.parseInt(guestsArray[i]));
+                }
+                Guest _guest = new Guest(Integer.parseInt(guestsArray[0]), guestsArray[1],
+                        Integer.parseInt(guestsArray[2]), guestsArray[3].charAt(0), guestsArray[4], _add1,
+                        guestsArray[6], guestsArray[7], roomNumVect);
+
+                Hotel.guestsList.put(Integer.parseInt(guestsArray[0]), _guest);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class ThreadForGuests1 implements Runnable {
+    @Override
+    public void run() {
+        Hotel.guestsList.clear();
+        String line = "";
+        try {
+            // parsing a CSV file into BufferedReader class constructor
+            BufferedReader br = new BufferedReader(new FileReader("resources/staff.csv"));
+            while ((line = br.readLine()) != null) // returns a Boolean value
+            {
+                String[] staffArray = line.split(","); // use comma as separator
+                Address _add = new Address();
+                _add.strToAdd(staffArray[5]);
+                Staff _staff = new Staff(Integer.parseInt(staffArray[0]), staffArray[1],
+                        Integer.parseInt(staffArray[2]), staffArray[3].charAt(0), staffArray[4], _add, staffArray[6],
+                        staffArray[7], staffArray[8], Integer.parseInt(staffArray[9]), staffArray[10], staffArray[11]);
+
+                Hotel.staffList.put(Integer.parseInt(staffArray[0]), _staff);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class ThreadForRooms2 implements Runnable {
+    @Override
+    public void run() {
         for (Map.Entry<Integer, Room> entry : Hotel.roomsList.entrySet()) {
             Room _room = entry.getValue();
 
             try (FileWriter writer = new FileWriter("resources/rooms.csv")) {
                 /**
-                 * Structure of rooms.csv : 
-                 * roomNumber | capacity | desc | roomSize | available
+                 * Structure of rooms.csv : roomNumber | capacity | desc | roomSize | available
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_room.getRoomNumber().toString() + ',');
@@ -46,16 +125,20 @@ public class FileHandling {
                 System.out.println(e);
             }
         }
+    }
+}
 
-        // Staff
+class ThreadForStaff2 implements Runnable {
+    @Override
+    public void run() {
         for (Map.Entry<Integer, Staff> entry : Hotel.staffList.entrySet()) {
 
             Staff _staff = entry.getValue();
 
             try (FileWriter writer = new FileWriter("resources/staff.csv")) {
                 /**
-                 * Structure of staff.csv : 
-                 * id | name | age | gender | mobileNumber | address | category | type | salary | workingDays | LoginID | Password
+                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
+                 * category | type | salary | workingDays | LoginID | Password
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_staff.getId().toString() + ',');
@@ -80,15 +163,19 @@ public class FileHandling {
             }
 
         }
+    }
+}
 
-        // Guest
+class ThreadForGuests2 implements Runnable {
+    @Override
+    public void run() {
         for (Map.Entry<Integer, Guest> entry : Hotel.guestsList.entrySet()) {
             Guest _guest = entry.getValue();
 
             try (FileWriter writer = new FileWriter("resources/guests.csv")) {
                 /**
-                 * Structure of staff.csv : 
-                 * id | name | age | gender | mobileNumber | address | category | aadharNumber | Rooms Vector...
+                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
+                 * category | aadharNumber | Rooms Vector...
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_guest.getId().toString() + ',');
@@ -116,82 +203,39 @@ public class FileHandling {
 
         }
     }
+}
+
+public class FileHandling {
 
     /**
      * Function to overwrite data into the Maps from CSV files.
      */
-    public void readFromCSV() {
-        Hotel.roomsList.clear();
-        Hotel.guestsList.clear();
-        Hotel.staffList.clear();
-
-        // Filling roomList
-        String line = "";
-        try {
-            // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br = new BufferedReader(new FileReader("resources/rooms.csv"));
-            while ((line = br.readLine()) != null) // returns a Boolean value
-            {
-                String[] roomArray = line.split(","); // use comma as separator
-                boolean avail;
-                if (roomArray[4] == "Y")
-                    avail = true;
-                else
-                    avail = false;
-                Room _room = new Room(avail, !avail, Integer.parseInt(roomArray[1]), roomArray[2],
-                        Integer.parseInt(roomArray[3]), Integer.parseInt(roomArray[0]));
-                Hotel.roomsList.put(Integer.parseInt(roomArray[0]), _room);
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void readFromCSV() {
+        // Filling roomsList
+        new Thread(new ThreadForRooms1()).start();
 
         // Filling staffList
-        line = "";
-        try {
-            // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br = new BufferedReader(new FileReader("resources/staff.csv"));
-            while ((line = br.readLine()) != null) // returns a Boolean value
-            {
-                String[] staffArray = line.split(","); // use comma as separator
-                Address _add = new Address();
-                _add.strToAdd(staffArray[5]);
-                Staff _staff = new Staff(Integer.parseInt(staffArray[0]), staffArray[1],
-                        Integer.parseInt(staffArray[2]), staffArray[3].charAt(0), staffArray[4], _add, staffArray[6],
-                        staffArray[7], staffArray[8], Integer.parseInt(staffArray[9]), staffArray[10], staffArray[11]);
-
-                Hotel.staffList.put(Integer.parseInt(staffArray[0]), _staff);
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new Thread(new ThreadForStaff1()).start();
 
         // Filling guestsList
-        line = "";
-        try {
-            // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br = new BufferedReader(new FileReader("resources/guests.csv"));
-            while ((line = br.readLine()) != null) // returns a Boolean value
-            {
-                String[] guestsArray = line.split(","); // use comma as separator
-                Address _add1 = new Address();
-                _add1.strToAdd(guestsArray[5]);
-                Vector<Integer> roomNumVect = new Vector<Integer>();
-                for (int i = 8; i < guestsArray.length; i++) {
-                    roomNumVect.add(Integer.parseInt(guestsArray[i]));
-                }
-                Guest _guest = new Guest(Integer.parseInt(guestsArray[0]), guestsArray[1],
-                        Integer.parseInt(guestsArray[2]), guestsArray[3].charAt(0), guestsArray[4], _add1,
-                        guestsArray[6], guestsArray[7], roomNumVect);
+        new Thread(new ThreadForGuests1()).start();
 
-                Hotel.guestsList.put(Integer.parseInt(guestsArray[0]), _guest);
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return;
+    }
 
+    /**
+     * Function to overwrite CSV files with data stored in Maps.
+     */
+    public static void WriteToCSV() {
+        // Filling rooms.csv
+        new Thread(new ThreadForRooms2()).start();
+
+        // Filling staff.csv
+        new Thread(new ThreadForStaff2()).start();
+
+        // Filling guests.csv
+        new Thread(new ThreadForGuests2()).start();
+
+        return;
     }
 }
