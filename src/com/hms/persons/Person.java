@@ -4,13 +4,13 @@ import java.util.*;
 import java.io.*;
 
 abstract class Person {
-    int id;
-    String name;
-    int age;
-    char gender;
-    String mobNumber;
-    com.hms.persons.Address add = new com.hms.persons.Address();
-    String cat;
+    protected int id;
+    protected String name;
+    protected int age;
+    protected char gender;
+    protected String mobNumber;
+    protected com.hms.persons.Address add;
+    protected String cat;
 
     public Person() {
         id = -1;
@@ -22,14 +22,14 @@ abstract class Person {
         System.out.print("\nEnter name:\n");
         inp = cin.next();
         inp += cin.nextLine();
-        this.name = inp;
+        name = inp;
         System.out.print("\nEnter age:\n");
         boolean flag = true;
         while (flag) {
             inp = cin.next();
             inp += cin.nextLine();
             try {
-                this.age = Integer.parseInt(inp);
+                age = Integer.parseInt(inp);
                 if (age <= 0)
                     System.out.print("Please enter a valid age:\n");
                 else if (age < minAge) {
@@ -48,17 +48,17 @@ abstract class Person {
         }
         System.out.print("\nGender (M = Male || F = Female):\n");
         inp = "X";
-        while (!inp.equals("M") && !inp.equals("F")) {
+        while (inp != "M" && inp != "F") {
             inp = cin.next();
             inp += cin.nextLine();
-            this.gender = inp.charAt(0);
+            gender = inp.charAt(0);
             if (inp != "M" && inp != "F")
                 System.out.print("M or F?\n");
         }
         System.out.print("\nEnter mobile number (with country code):\n");
         inp = cin.next();
         inp += cin.nextLine();
-        this.mobNumber = inp;
+        mobNumber = inp;
         add.takeInput();
         return;
     }
@@ -77,6 +77,17 @@ abstract class Person {
         return;
     }
 
+    public void assign(Person p) {
+        id = p.id;
+        name = p.name;
+        age = p.age;
+        gender = p.gender;
+        mobNumber = p.mobNumber;
+        add = p.add;
+        cat = p.cat;
+        return;
+    }
+
     public void printDetailsFromHistory() {
         if (id == -1)
             return;
@@ -91,5 +102,4 @@ abstract class Person {
     }
 
     public abstract void getDetails();
-
 }
