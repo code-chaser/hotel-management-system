@@ -9,7 +9,7 @@ abstract class Person {
     protected int age;
     protected char gender;
     protected String mobNumber;
-    protected com.hms.persons.Address add;
+    protected com.hms.persons.Address add = new com.hms.persons.Address();
     protected String cat;
 
     public Person() {
@@ -48,11 +48,11 @@ abstract class Person {
         }
         System.out.print("\nGender (M = Male || F = Female):\n");
         inp = "X";
-        while (inp != "M" && inp != "F") {
+        while (!inp.equals("M") && !inp.equals("F")) {
             inp = cin.next();
             inp += cin.nextLine();
             gender = inp.charAt(0);
-            if (inp != "M" && inp != "F")
+            if (!inp.equals("M") && !inp.equals("F"))
                 System.out.print("M or F?\n");
         }
         System.out.print("\nEnter mobile number (with country code):\n");

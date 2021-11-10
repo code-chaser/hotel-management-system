@@ -62,7 +62,9 @@ public class Guest extends Person {
     public void printDetails() {
         if (id == -1)
             return;
-        if (aadharNumber != "")
+        System.out.println("\nGuest Details:");
+        super.printDetails();
+        if (!aadharNumber.equals(""))
             System.out.print("Aadhar Number   : " + aadharNumber + "\n");
         System.out.print("Rooms Booked    : " + roomNumbers + "\n");
         return;

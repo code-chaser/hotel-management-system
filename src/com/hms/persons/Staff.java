@@ -59,6 +59,8 @@ public class Staff extends Person {
     public void printDetails() {
         if (id == -1)
             return;
+        
+        System.out.println("\nStaff Details:");
         super.printDetails();
         System.out.print("Type            :" + type + "\n");
         System.out.print("Salary          :" + salary + "\n");
