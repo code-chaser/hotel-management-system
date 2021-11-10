@@ -1,23 +1,24 @@
-package com.hms.hotel;
+package com.hms;
 
 import com.hms.rooms.*;
 import com.hms.persons.*;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Hotel {
-    public static HashMap<Integer, Room> rooms = new HashMap<>();
-    public static HashMap<Integer, Staff> personnel = new HashMap<>();
+    public static TreeMap<Integer, Room> roomsList = new TreeMap<>();
+    public static TreeMap<Integer, Staff> staffList = new TreeMap<>();
+    public static TreeMap<Integer, Guest> guestsList = new TreeMap<>();
 
     public static void main(String[] args) {
         Room room = new Room();
         room.setDesc("Room...");
-        rooms.put(101, room);
-        rooms.put(1401, new Room(false, false, 2, "Room hai bro", 14, 1401));
+        roomsList.put(101, room);
+        roomsList.put(1401, new Room(false, false, 2, "Room hai bro", 14, 1401));
         printRoomDetails();
     }
 
-    static void printRoomDetails() {
-        for (var room : rooms.entrySet()) {
+    public static void printRoomDetails() {
+        for (var room : roomsList.entrySet()) {
             System.out.print(room.getKey() + ": ");
             if(room.getKey()/1000 == 0) System.out.print(" ");
             Room currentRoom = room.getValue();
