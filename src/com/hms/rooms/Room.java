@@ -10,7 +10,7 @@ public class Room {
 	private boolean occupied;
 	private Integer capacity;
 	private String desc;
-	private int roomSize;
+	private Integer roomSize;
 	private Integer roomNumber;
 
 	public Room(boolean available, boolean occupied, Integer capacity, String desc, Integer roomSize, Integer roomNumber) {
