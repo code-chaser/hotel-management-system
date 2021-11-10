@@ -226,7 +226,7 @@ public class FileHandling {
     /**
      * Function to overwrite CSV files with data stored in Maps.
      */
-    public static void WriteToCSV() {
+    public static void writeToCSV() {
         // Filling rooms.csv
         new Thread(new ThreadForRooms2()).start();
 

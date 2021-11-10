@@ -20,5 +20,9 @@ class ReaderThread implements Runnable {
 public class Main {
     public static void main(String[] args) {
         new Thread(new ReaderThread()).start();
+
+        //Main Body
+        
+        FileHandling.writeToCSV();
     }
 }
