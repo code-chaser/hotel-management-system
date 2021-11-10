@@ -5,8 +5,8 @@ import com.hms.persons.*;
 import java.util.HashMap;
 
 public class Hotel {
-    static HashMap<Integer, Room> rooms = new HashMap<>();
-    static HashMap<Integer, Staff> personnel = new HashMap<>();
+    public static HashMap<Integer, Room> rooms = new HashMap<>();
+    public static HashMap<Integer, Staff> personnel = new HashMap<>();
 
     public static void main(String[] args) {
         Room room = new Room();
