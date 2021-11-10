@@ -2,11 +2,11 @@ package com.hms.hotel;
 
 import com.hms.rooms.*;
 import com.hms.persons.*;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Hotel {
-    static HashMap<Integer, Room> rooms = new HashMap<>();
-    static HashMap<Integer, Staff> personnel = new HashMap<>();
+    static TreeMap<Integer, Room> rooms = new TreeMap<>();
+    static TreeMap<Integer, Staff> personnel = new TreeMap<>();
 
     public static void main(String[] args) {
         Room room = new Room();
