@@ -32,14 +32,14 @@ public class Hotel {
         }
     }
 
-    void printStaffDetails() {
+    public static void printStaffDetails() {
         for(var staff : staffList.entrySet()) {
             staff.getValue().printDetails();
             System.out.print("\n");
         }
     }
 
-    void printGuestDetails(){
+    public static void printGuestDetails(){
         for(var guest : guestsList.entrySet()) {
             guest.getValue().printDetails();
             System.out.print("\n");

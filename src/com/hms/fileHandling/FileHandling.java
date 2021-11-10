@@ -13,7 +13,7 @@ import com.hms.persons.Guest;
 import com.hms.persons.Staff;
 import com.hms.rooms.Room;
 
-class ThreadForRooms1 implements Runnable {
+class ThreadForRoomsRead implements Runnable {
     @Override
     public void run() {
         Hotel.roomsList.clear();
@@ -40,10 +40,36 @@ class ThreadForRooms1 implements Runnable {
     }
 }
 
-class ThreadForStaff1 implements Runnable {
+class ThreadForStaffRead implements Runnable {
     @Override
     public void run() {
         Hotel.staffList.clear();
+        String line = "";
+        try {
+            // parsing a CSV file into BufferedReader class constructor
+            BufferedReader br = new BufferedReader(new FileReader("resources/staff.csv"));
+            while ((line = br.readLine()) != null) // returns a Boolean value
+            {
+                String[] staffArray = line.split(","); // use comma as separator
+                Address _add = new Address();
+                _add.strToAdd(staffArray[5]);
+                Staff _staff = new Staff(Integer.parseInt(staffArray[0]), staffArray[1],
+                        Integer.parseInt(staffArray[2]), staffArray[3].charAt(0), staffArray[4], _add, staffArray[6],
+                        staffArray[7], staffArray[8], Integer.parseInt(staffArray[9]), staffArray[10], staffArray[11]);
+
+                Hotel.staffList.put(Integer.parseInt(staffArray[0]), _staff);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class ThreadForGuestsRead implements Runnable {
+    @Override
+    public void run() {
+        Hotel.guestsList.clear();
         String line = "";
         try {
             // parsing a CSV file into BufferedReader class constructor
@@ -70,33 +96,7 @@ class ThreadForStaff1 implements Runnable {
     }
 }
 
-class ThreadForGuests1 implements Runnable {
-    @Override
-    public void run() {
-        Hotel.guestsList.clear();
-        String line = "";
-        try {
-            // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br = new BufferedReader(new FileReader("resources/staff.csv"));
-            while ((line = br.readLine()) != null) // returns a Boolean value
-            {
-                String[] staffArray = line.split(","); // use comma as separator
-                Address _add = new Address();
-                _add.strToAdd(staffArray[5]);
-                Staff _staff = new Staff(Integer.parseInt(staffArray[0]), staffArray[1],
-                        Integer.parseInt(staffArray[2]), staffArray[3].charAt(0), staffArray[4], _add, staffArray[6],
-                        staffArray[7], staffArray[8], Integer.parseInt(staffArray[9]), staffArray[10], staffArray[11]);
-
-                Hotel.staffList.put(Integer.parseInt(staffArray[0]), _staff);
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-class ThreadForRooms2 implements Runnable {
+class ThreadForRoomsWrite implements Runnable {
     @Override
     public void run() {
         for (Map.Entry<Integer, Room> entry : Hotel.roomsList.entrySet()) {
@@ -128,7 +128,7 @@ class ThreadForRooms2 implements Runnable {
     }
 }
 
-class ThreadForStaff2 implements Runnable {
+class ThreadForStaffWrite implements Runnable {
     @Override
     public void run() {
         for (Map.Entry<Integer, Staff> entry : Hotel.staffList.entrySet()) {
@@ -166,7 +166,7 @@ class ThreadForStaff2 implements Runnable {
     }
 }
 
-class ThreadForGuests2 implements Runnable {
+class ThreadForGuestsWrite implements Runnable {
     @Override
     public void run() {
         for (Map.Entry<Integer, Guest> entry : Hotel.guestsList.entrySet()) {
@@ -206,19 +206,36 @@ class ThreadForGuests2 implements Runnable {
 }
 
 public class FileHandling {
+    public static void main(String[] args) {
+        Room roomtemp = new Room(true,false,4,"good room",5,123);
+        Hotel.roomsList.put(123,roomtemp);
+ 
+        Address addtemp = new Address();
+        Staff stafftemp = new Staff(123,"Ayush",19,'M',"123456789",addtemp,"cat","type","salary",23,"ayush0402","password");
+        Hotel.staffList.put(123,stafftemp);
 
+        writeToCSV();
+
+        Hotel.roomsList.clear();
+        Hotel.staffList.clear();
+
+        readFromCSV();
+
+        Hotel.printRoomDetails();
+        Hotel.printStaffDetails();
+    }
     /**
      * Function to overwrite data into the Maps from CSV files.
      */
     public static void readFromCSV() {
         // Filling roomsList
-        new Thread(new ThreadForRooms1()).start();
+        new Thread(new ThreadForRoomsRead()).start();
 
         // Filling staffList
-        new Thread(new ThreadForStaff1()).start();
+        new Thread(new ThreadForStaffRead()).start();
 
         // Filling guestsList
-        new Thread(new ThreadForGuests1()).start();
+        new Thread(new ThreadForGuestsRead()).start();
 
         return;
     }
@@ -228,13 +245,13 @@ public class FileHandling {
      */
     public static void writeToCSV() {
         // Filling rooms.csv
-        new Thread(new ThreadForRooms2()).start();
+        new Thread(new ThreadForRoomsWrite()).start();
 
         // Filling staff.csv
-        new Thread(new ThreadForStaff2()).start();
+        new Thread(new ThreadForStaffWrite()).start();
 
         // Filling guests.csv
-        new Thread(new ThreadForGuests2()).start();
+        new Thread(new ThreadForGuestsWrite()).start();
 
         return;
     }
