@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Vector;
+
 import com.hms.Hotel;
 import com.hms.persons.Guest;
 import com.hms.persons.Staff;
@@ -57,6 +59,16 @@ public class Filehandling {
                  * category | type | salary | workingDays
                  */
                 StringBuilder s = new StringBuilder();
+                s.append(_staff.getId().toString() + ',');
+                s.append(_staff.getName() + ',');
+                s.append(_staff.getAge().toString() + ',');
+                s.append(_staff.getGender() + ',');
+                s.append(_staff.getMobileNumber() + ',');
+                s.append(_staff.getAddress().addToStr() + ',');
+                s.append(_staff.getCategory() + ',');
+                s.append(_staff.getType() + ',');
+                s.append(_staff.getSalary() + ',');
+                s.append(_staff.getWorkingDays().toString() + ',');
 
                 s.append('\n');
 
@@ -78,7 +90,21 @@ public class Filehandling {
                  * category | aadharNumber | Rooms Vector...
                  */
                 StringBuilder s = new StringBuilder();
+                s.append(_guest.getId().toString() + ',');
+                s.append(_guest.getName() + ',');
+                s.append(_guest.getAge().toString() + ',');
+                s.append(_guest.getGender() + ',');
+                s.append(_guest.getMobileNumber() + ',');
+                s.append(_guest.getAddress().addToStr() + ',');
+                s.append(_guest.getCategory() + ',');
+                s.append(_guest.getAadharNumber() + ',');
 
+                Vector <Integer> roomVector = _guest.getRoomNumbers();
+
+                for (int i = 0; i < roomVector.size() - 1; i++) {
+                    s.append(roomVector.get(i).toString() + ',');
+                }
+                s.append(roomVector.get(roomVector.size()-1).toString());
                 s.append('\n');
 
                 writer.write(s.toString());
@@ -120,7 +146,7 @@ public class Filehandling {
             e.printStackTrace();
         }
 
-        //Filling staffList
+        // Filling staffList
         line = "";
         try {
             // parsing a CSV file into BufferedReader class constructor
@@ -135,7 +161,7 @@ public class Filehandling {
             e.printStackTrace();
         }
 
-        //Filling guestsList
+        // Filling guestsList
         line = "";
         try {
             // parsing a CSV file into BufferedReader class constructor

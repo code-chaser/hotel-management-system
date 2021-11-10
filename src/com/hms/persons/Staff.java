@@ -6,7 +6,7 @@ import java.io.*;
 public class Staff extends Person {
     protected String type;
     protected String salary;
-    protected int workingDays;
+    protected Integer workingDays;
 
     public Staff() {
         id = -1;
@@ -29,7 +29,7 @@ public class Staff extends Person {
         this.salary = salary;
     }
 
-    public int getWorkingDays() {
+    public Integer getWorkingDays() {
         return workingDays;
     }
 
