@@ -20,12 +20,14 @@ abstract class Person {
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter name:\n");
-        inp = cin.nextLine();
+        inp = cin.next();
+        inp += cin.nextLine();
         name = inp;
         System.out.print("\nEnter age:\n");
         boolean flag = true;
         while (flag) {
-            inp = cin.nextLine();
+            inp = cin.next();
+            inp += cin.nextLine();
             try {
                 age = Integer.parseInt(inp);
                 if (age <= 0)
@@ -47,13 +49,15 @@ abstract class Person {
         System.out.print("\nGender (M = Male || F = Female):\n");
         inp = "X";
         while (inp != "M" && inp != "F") {
-            inp = cin.nextLine();
+            inp = cin.next();
+            inp += cin.nextLine();
             gender = inp.charAt(0);
             if (inp != "M" && inp != "F")
                 System.out.print("M or F?\n");
         }
         System.out.print("\nEnter mobile number (with country code):\n");
-        inp = cin.nextLine();
+        inp = cin.next();
+        inp += cin.nextLine();
         mobNumber = inp;
         add.takeInput();
         return;
