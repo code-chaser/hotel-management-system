@@ -39,6 +39,7 @@ abstract class Person {
                 } else if (age > maxAge) {
                     System.out.print(
                             "\nSorry, we can't register a person older than " + maxAge + " years as a " + cat + ".\n");
+                            this.id = -2;
                     return;
                 } else
                     flag = false;

@@ -56,6 +56,7 @@ public class Guest extends Person {
 
     public void addPerson(int minAge, int maxAge) {
         super.addPerson(0, 200);
+        if(this.id == -2) return;
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter aadhar number:\n");
@@ -65,7 +66,6 @@ public class Guest extends Person {
         cat = "Guest";
         if (com.hms.Hotel.guestsList.entrySet().size() > 0){
             this.id = com.hms.Hotel.guestsList.lastEntry().getKey() + 1;
-            
             com.hms.Hotel.guestsList.put(this.id, new Guest(this));
         }
         else{
@@ -209,6 +209,7 @@ public class Guest extends Person {
                         }
                     }
                 }
+                break;
             case 3:
                 String reqMobNumber = "";
                 System.out.print("\nEnter Mobile Number:\n");
@@ -269,7 +270,7 @@ public class Guest extends Person {
                         }
                     }
                 }
-
+                break;
             case 4:
                 System.out.print("\nEnter Aadhar Number:\n");
                 inp = cin.next();

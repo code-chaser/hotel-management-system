@@ -2,17 +2,43 @@ package com.hms.persons;
 
 import java.util.*;
 import java.io.*;
+import java.nio.charset.MalformedInputException;
 
 public class Staff extends Person {
     protected String type;
     protected String salary;
     protected int workingDays;
+    protected String loginId;
+    protected String password;
+
+    public static void main(String[] args) {
+        Staff staff = new Staff();
+        staff.addPerson(10, 200);
+        staff.addPerson(10, 200);
+        staff.getDetails();
+    }
 
     public Staff() {
         id = -1;
         cat = "Staff";
     }
     
+    public Staff(Staff s){
+        this.assign(s);
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getType() {
         return type;
     }
@@ -39,6 +65,7 @@ public class Staff extends Person {
 
     public void addPerson(int minAge, int maxAge) {
         super.addPerson(18, 60);
+        if(this.id == -2) return;
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter type of staff:\n");
@@ -49,10 +76,12 @@ public class Staff extends Person {
         salary = inp;
         workingDays = 0;
         cat = "Staff";
-        if (com.hms.Hotel.staffList.entrySet().size() > 0)
-            com.hms.Hotel.staffList.put(com.hms.Hotel.staffList.lastEntry().getKey() + 1, this);
+        if (com.hms.Hotel.staffList.entrySet().size() > 0){
+            this.id = com.hms.Hotel.staffList.lastEntry().getKey() + 1;
+            com.hms.Hotel.staffList.put(this.id, new Staff(this));
+        }
         else
-            com.hms.Hotel.staffList.put(1, this);
+            com.hms.Hotel.staffList.put(1, new Staff(this));
         return;
     }
 
@@ -73,6 +102,8 @@ public class Staff extends Person {
         this.type = s.type;
         this.salary = s.salary;
         this.workingDays = s.workingDays;
+        this.loginId = s.loginId;
+        this.password = s.password;
         return;
     }
 
@@ -198,6 +229,7 @@ public class Staff extends Person {
                         }
                     }
                 }
+                break;
             case 3:
                 String reqMobNumber = "";
                 System.out.print("\nEnter Mobile Number:\n");
@@ -258,6 +290,7 @@ public class Staff extends Person {
                         }
                     }
                 }
+                break;
             case 4:
                 String reqType = "";
                 System.out.print("\nEnter Type:\n");
