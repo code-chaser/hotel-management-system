@@ -11,7 +11,7 @@ public class Address {
     private String country;
 
     public Address() {
-        line1 = line2 = city = state = pinCode = country = "demo address";
+        line1 = line2 = city = state = pinCode = country = "";
     }
 
     public void takeInput() {
