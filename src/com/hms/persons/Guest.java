@@ -34,23 +34,7 @@ public class Guest extends Person {
         return;
     }
 
-    public void printDetailsFromHistory() {
-        if (id == -1)
-            return;
-        System.out.print("\nHistory Details:\n");
-        System.out.print("Name            : " + name + "\n");
-        System.out.print("Gender          : " + gender + "\n");
-        System.out.print("Age             : " + age + "\n");
-        System.out.print("Mobile          : " + mobNumber + "\n");
-        System.out.print("Address         : ");
-        add.print();
-        return;
-    }
-
     public void getDetails(int id) {
         System.out.print("\nSearch using: (select one of the following options)\n1. ID\n2. Name\n3.Mobile Number\n4.Aadhar Number\n)");
-    }
-
-    public void getDetailsFromHistory() {
     }
 }

@@ -91,6 +91,4 @@ abstract class Person {
     }
 
     public abstract void getDetails(int id);
-
-    public abstract void getDetailsFromHistory();
 }
