@@ -30,7 +30,7 @@ public class Staff extends Person {
         return;
     }
 
-    public void getDetails(int id) {
+    public void getDetails() {
     }
 
     public void getDetailsFromHistory() {

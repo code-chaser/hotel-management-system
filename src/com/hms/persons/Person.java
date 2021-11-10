@@ -9,7 +9,7 @@ abstract class Person {
     int age;
     char gender;
     String mobNumber;
-    com.hms.persons.Address add;
+    com.hms.persons.Address add = new com.hms.persons.Address();
     String cat;
 
     public Person() {
@@ -48,7 +48,7 @@ abstract class Person {
         }
         System.out.print("\nGender (M = Male || F = Female):\n");
         inp = "X";
-        while (inp != "M" && inp != "F") {
+        while (!inp.equals("M") && !inp.equals("F")) {
             inp = cin.next();
             inp += cin.nextLine();
             gender = inp.charAt(0);
@@ -90,7 +90,6 @@ abstract class Person {
         return;
     }
 
-    public abstract void getDetails(int id);
+    public abstract void getDetails();
 
-    public abstract void getDetailsFromHistory();
 }
