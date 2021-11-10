@@ -2,7 +2,8 @@ package com.hms;
 
 import com.hms.rooms.*;
 import com.hms.persons.*;
-import java.util.TreeMap;
+import java.util.*;
+import java.io.*;
 
 public class Hotel {
     public static TreeMap<Integer, Room> roomsList = new TreeMap<>();
@@ -32,5 +33,16 @@ public class Hotel {
     }
 
     void printStaffDetails() {
+        for(var staff : staffList.entrySet()) {
+            staff.getValue().printDetails();
+            System.out.print("\n");
+        }
+    }
+
+    void printGuestDetails(){
+        for(var guest : guestsList.entrySet()) {
+            guest.getValue().printDetails();
+            System.out.print("\n");
+        }
     }
 }

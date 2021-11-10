@@ -15,6 +15,18 @@ abstract class Person {
     public Person() {
         id = -1;
     }
+    // add contructor
+
+    public Person(int id, String name, int age, char gender, String mobNumber, com.hms.persons.Address add,
+            String cat) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.mobNumber = mobNumber;
+        this.add = add;
+        this.cat = cat;
+    }
 
     public void addPerson(int minAge, int maxAge) {
         Scanner cin = new Scanner(System.in);
@@ -39,7 +51,7 @@ abstract class Person {
                 } else if (age > maxAge) {
                     System.out.print(
                             "\nSorry, we can't register a person older than " + maxAge + " years as a " + cat + ".\n");
-                            this.id = -2;
+                    this.id = -2;
                     return;
                 } else
                     flag = false;

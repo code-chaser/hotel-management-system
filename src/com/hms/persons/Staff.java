@@ -2,7 +2,6 @@ package com.hms.persons;
 
 import java.util.*;
 import java.io.*;
-import java.nio.charset.MalformedInputException;
 
 public class Staff extends Person {
     protected String type;
@@ -25,6 +24,16 @@ public class Staff extends Person {
 
     public Staff(Staff s) {
         this.assign(s);
+    }
+
+    public Staff(int id, String name, int age, char gender, String mobNumber, com.hms.persons.Address add, String cat,
+            String type, String salary, int workingDays, String loginId, String password) {
+        super(id, name, age, gender, mobNumber, add, cat);
+        this.type = type;
+        this.salary = salary;
+        this.workingDays = workingDays;
+        this.loginId = loginId;
+        this.password = password;
     }
 
     public String getLoginId() {
