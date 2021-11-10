@@ -144,7 +144,7 @@ class ThreadForStaffWrite implements Runnable {
                 s.append(_staff.getId().toString() + ',');
                 s.append(_staff.getName() + ',');
                 s.append(_staff.getAge().toString() + ',');
-                s.append(_staff.getGender() + ',');
+                s.append(_staff.getGender().toString() + ',');
                 s.append(_staff.getMobileNumber() + ',');
                 s.append(_staff.getAddress().addToStr() + ',');
                 s.append(_staff.getCategory() + ',');
@@ -213,16 +213,23 @@ public class FileHandling {
         Address addtemp = new Address();
         Staff stafftemp = new Staff(123,"Ayush",19,'M',"123456789",addtemp,"cat","type","salary",23,"ayush0402","password");
         Hotel.staffList.put(123,stafftemp);
-
+        Vector<Integer> roomVect = new Vector<Integer>();
+        roomVect.add(123);
+        roomVect.add(123);
+        Guest guesttemp = new Guest(123,"Ayush",19,'M',"123456789",addtemp,"cat","9234850",roomVect);
+        Hotel.guestsList.put(123,guesttemp);
         writeToCSV();
 
         Hotel.roomsList.clear();
         Hotel.staffList.clear();
+        Hotel.guestsList.clear();
 
         readFromCSV();
 
         Hotel.printRoomDetails();
         Hotel.printStaffDetails();
+        Hotel.printGuestDetails();
+        return;
     }
     /**
      * Function to overwrite data into the Maps from CSV files.
