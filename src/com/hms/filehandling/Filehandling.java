@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import com.hms.Hotel;
+import com.hms.persons.Address;
 import com.hms.persons.Guest;
 import com.hms.persons.Staff;
 import com.hms.rooms.Room;
@@ -26,7 +27,8 @@ public class Filehandling {
 
             try (FileWriter writer = new FileWriter("resources/rooms.csv")) {
                 /**
-                 * Structure of rooms.csv : roomNumber | capacity | desc | roomSize | available
+                 * Structure of rooms.csv : 
+                 * roomNumber | capacity | desc | roomSize | available
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_room.getRoomNumber().toString() + ',');
@@ -55,8 +57,8 @@ public class Filehandling {
 
             try (FileWriter writer = new FileWriter("resources/staff.csv")) {
                 /**
-                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
-                 * category | type | salary | workingDays | LoginID | Password
+                 * Structure of staff.csv : 
+                 * id | name | age | gender | mobileNumber | address | category | type | salary | workingDays | LoginID | Password
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_staff.getId().toString() + ',');
@@ -69,7 +71,7 @@ public class Filehandling {
                 s.append(_staff.getType() + ',');
                 s.append(_staff.getSalary() + ',');
                 s.append(_staff.getWorkingDays().toString() + ',');
-                s.append(_staff.getLoginId()+',');
+                s.append(_staff.getLoginId() + ',');
                 s.append(_staff.getPassword());
 
                 s.append('\n');
@@ -88,8 +90,8 @@ public class Filehandling {
 
             try (FileWriter writer = new FileWriter("resources/guests.csv")) {
                 /**
-                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
-                 * category | aadharNumber | Rooms Vector...
+                 * Structure of staff.csv : 
+                 * id | name | age | gender | mobileNumber | address | category | aadharNumber | Rooms Vector...
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_guest.getId().toString() + ',');
@@ -156,7 +158,13 @@ public class Filehandling {
             while ((line = br.readLine()) != null) // returns a Boolean value
             {
                 String[] staffArray = line.split(","); // use comma as separator
+                Address _add = new Address();
+                _add.strToAdd(staffArray[5]);
+                Staff _staff = new Staff(Integer.parseInt(staffArray[0]), staffArray[1],
+                        Integer.parseInt(staffArray[2]), staffArray[3].charAt(0), staffArray[4], _add, staffArray[6],
+                        staffArray[7], staffArray[8], Integer.parseInt(staffArray[9]), staffArray[10], staffArray[11]);
 
+                Hotel.staffList.put(Integer.parseInt(staffArray[0]), _staff);
             }
             br.close();
         } catch (IOException e) {
@@ -171,9 +179,17 @@ public class Filehandling {
             while ((line = br.readLine()) != null) // returns a Boolean value
             {
                 String[] guestsArray = line.split(","); // use comma as separator
+                Address _add1 = new Address();
+                _add1.strToAdd(guestsArray[5]);
+                Vector<Integer> roomNumVect = new Vector<Integer>();
+                for (int i = 8; i < guestsArray.length; i++) {
+                    roomNumVect.add(Integer.parseInt(guestsArray[i]));
+                }
+                Guest _guest = new Guest(Integer.parseInt(guestsArray[0]), guestsArray[1],
+                        Integer.parseInt(guestsArray[2]), guestsArray[3].charAt(0), guestsArray[4], _add1,
+                        guestsArray[6], guestsArray[7], roomNumVect);
 
-                
-
+                Hotel.guestsList.put(Integer.parseInt(guestsArray[0]), _guest);
             }
             br.close();
         } catch (IOException e) {
