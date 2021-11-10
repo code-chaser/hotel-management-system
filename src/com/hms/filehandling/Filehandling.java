@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import com.hms.Hotel;
+import com.hms.persons.Address;
 import com.hms.persons.Guest;
 import com.hms.persons.Staff;
 import com.hms.rooms.Room;
@@ -69,7 +70,7 @@ public class Filehandling {
                 s.append(_staff.getType() + ',');
                 s.append(_staff.getSalary() + ',');
                 s.append(_staff.getWorkingDays().toString() + ',');
-                s.append(_staff.getLoginId()+',');
+                s.append(_staff.getLoginId() + ',');
                 s.append(_staff.getPassword());
 
                 s.append('\n');
@@ -155,8 +156,18 @@ public class Filehandling {
             BufferedReader br = new BufferedReader(new FileReader("resources/staff.csv"));
             while ((line = br.readLine()) != null) // returns a Boolean value
             {
+                /**
+                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
+                 * category | type | salary | workingDays | LoginID | Password
+                 */
                 String[] staffArray = line.split(","); // use comma as separator
+                Address _add = new Address();
+                _add.strToAdd(staffArray[5]);
+                Staff _staff = new Staff(Integer.parseInt(staffArray[0]), staffArray[1],
+                        Integer.parseInt(staffArray[2]), staffArray[3].charAt(0), staffArray[4], _add, staffArray[6],
+                        staffArray[7], staffArray[8], Integer.parseInt(staffArray[9]), staffArray[10], staffArray[11]);
 
+                        Hotel.staffList.put(Integer.parseInt(staffArray[0]),_staff);
             }
             br.close();
         } catch (IOException e) {
@@ -171,8 +182,6 @@ public class Filehandling {
             while ((line = br.readLine()) != null) // returns a Boolean value
             {
                 String[] guestsArray = line.split(","); // use comma as separator
-
-                
 
             }
             br.close();
