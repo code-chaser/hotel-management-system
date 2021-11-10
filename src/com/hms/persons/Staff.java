@@ -288,24 +288,25 @@ public class Staff extends Person {
                             done2 = done = true;
                             break;
                         }
-                        if (done)
-                            break;
-                        else {
-                            System.out.print("\nNo matching record found!\n");
-                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                    }
+                    if (done)
+                        break;
+                    else {
+                        System.out.print("\nNo matching record found!\n");
+                        System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        while (!inp.equals("Y") && !inp.equals("N")) {
+                            System.out.print("\nInvalid Choice!\nEnter again:\n ");
                             inp = cin.next();
                             inp += cin.nextLine();
-                            while (!inp.equals("Y") && !inp.equals("N")) {
-                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
-                                inp = cin.next();
-                                inp += cin.nextLine();
-                            }
-                            if (inp.equals("N")) {
-                                done = true;
-                                break;
-                            }
+                        }
+                        if (inp.equals("N")) {
+                            done = true;
+                            break;
                         }
                     }
+
                 }
                 break;
             case 4:
@@ -366,22 +367,22 @@ public class Staff extends Person {
                             done2 = done = true;
                             break;
                         }
-                        if (done)
-                            break;
-                        else {
-                            System.out.print("\nNo matching record found!\n");
-                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                    }
+                    if (done)
+                        break;
+                    else {
+                        System.out.print("\nNo matching record found!\n");
+                        System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        while (!inp.equals("Y") && !inp.equals("N")) {
+                            System.out.print("\nInvalid Choice!\nEnter again:\n ");
                             inp = cin.next();
                             inp += cin.nextLine();
-                            while (!inp.equals("Y") && !inp.equals("N")) {
-                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
-                                inp = cin.next();
-                                inp += cin.nextLine();
-                            }
-                            if (inp.equals("N")) {
-                                done = true;
-                                break;
-                            }
+                        }
+                        if (inp.equals("N")) {
+                            done = true;
+                            break;
                         }
                     }
                 }
