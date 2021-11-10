@@ -1,4 +1,4 @@
-package com.hms.filehandling;
+package com.hms.fileHandling;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,10 +13,7 @@ import com.hms.persons.Guest;
 import com.hms.persons.Staff;
 import com.hms.rooms.Room;
 
-/**
- * Work In Progress , Do not merge yet.
- */
-public class Filehandling {
+public class FileHandling {
     /**
      * Function to overwrite CSV files with data stored in Maps.
      */
