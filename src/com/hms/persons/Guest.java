@@ -54,10 +54,6 @@ public class Guest extends Person {
     
 
     public void getDetails() {
-        for(var entry: com.hms.Hotel.guestsList.entrySet()) {
-            System.out.println(entry.getKey());
-            entry.getValue().printDetails();
-        }
         Guest tempGuest = new Guest();
         boolean over = false;
         while (!over) {
@@ -153,7 +149,6 @@ public class Guest extends Person {
         }
 
         if (tempGuest.id != -1) {
-            tempGuest.printDetails();
             this.id = tempGuest.id;
             this.aadharNumber = tempGuest.aadharNumber;
             this.age = tempGuest.age;
