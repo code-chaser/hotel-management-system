@@ -27,7 +27,8 @@ public class Filehandling {
 
             try (FileWriter writer = new FileWriter("resources/rooms.csv")) {
                 /**
-                 * Structure of rooms.csv : roomNumber | capacity | desc | roomSize | available
+                 * Structure of rooms.csv : 
+                 * roomNumber | capacity | desc | roomSize | available
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_room.getRoomNumber().toString() + ',');
@@ -56,8 +57,8 @@ public class Filehandling {
 
             try (FileWriter writer = new FileWriter("resources/staff.csv")) {
                 /**
-                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
-                 * category | type | salary | workingDays | LoginID | Password
+                 * Structure of staff.csv : 
+                 * id | name | age | gender | mobileNumber | address | category | type | salary | workingDays | LoginID | Password
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_staff.getId().toString() + ',');
@@ -89,8 +90,8 @@ public class Filehandling {
 
             try (FileWriter writer = new FileWriter("resources/guests.csv")) {
                 /**
-                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
-                 * category | aadharNumber | Rooms Vector...
+                 * Structure of staff.csv : 
+                 * id | name | age | gender | mobileNumber | address | category | aadharNumber | Rooms Vector...
                  */
                 StringBuilder s = new StringBuilder();
                 s.append(_guest.getId().toString() + ',');
