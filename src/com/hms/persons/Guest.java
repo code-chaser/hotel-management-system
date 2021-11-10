@@ -1,25 +1,57 @@
 package com.hms.persons;
 
 import java.util.*;
-
-import com.hms.Hotel;
-
 import java.io.*;
 
 public class Guest extends Person {
-    String aadharNumber = "";
-    Vector<Integer> roomNumbers = new Vector<Integer>(1);
+    protected String aadharNumber = "";
+    protected Vector<Integer> roomNumbers = new Vector<Integer>(1);
+
+    public static void main(String[] Args) {
+        Guest g1 = new Guest();
+        g1.addPerson(10, 200);
+        g1.addPerson(10, 200);
+        g1.getDetails();
+    }
 
     public Guest() {
         id = -1;
+        cat = "Guest";
     }
 
-    public static void main(String Args[]) {
-        Guest g = new Guest();
-        g.addPerson(18, 100);
-        // g.addPerson(18, 100);
+    public Guest(Guest g) {
+        this.assign(g);
+    }
 
-        g.getDetails();
+    public String getAadharNumber() {
+        return aadharNumber;
+    }
+
+    public void setAadharNumber(String aadharNumber) {
+        this.aadharNumber = aadharNumber;
+    }
+
+    public Vector<Integer> getRoomNumbers() {
+        return roomNumbers;
+    }
+
+    public void setRoomNumbers(Vector<Integer> roomNumbers) {
+        this.roomNumbers = roomNumbers;
+    }
+
+    public void addRoomNumber(int roomNumber) {
+        roomNumbers.add(roomNumber);
+    }
+
+    public void removeRoomNumber(int roomNumber) {
+        roomNumbers.remove(roomNumber);
+    }
+
+    public void assign(Guest g) {
+        super.assign(g);
+        this.aadharNumber = g.aadharNumber;
+        this.roomNumbers = g.roomNumbers;
+        return;
     }
 
     public void addPerson(int minAge, int maxAge) {
@@ -29,14 +61,16 @@ public class Guest extends Person {
         System.out.print("\nEnter aadhar number:\n");
         inp = cin.next();
         inp += cin.nextLine();
-        this.aadharNumber = inp;
+        aadharNumber = inp;
+        cat = "Guest";
         if (com.hms.Hotel.guestsList.entrySet().size() > 0){
-            this.id = com.hms.Hotel.guestsList.entrySet().size() + 1;
-            com.hms.Hotel.guestsList.put(com.hms.Hotel.guestsList.lastEntry().getKey() + 1, this);
+            this.id = com.hms.Hotel.guestsList.lastEntry().getKey() + 1;
+            
+            com.hms.Hotel.guestsList.put(this.id, new Guest(this));
         }
-        else{ 
+        else{
             this.id = 1;
-            com.hms.Hotel.guestsList.put(1, this);
+            com.hms.Hotel.guestsList.put(1, new Guest(this));
         }
         return;
     }
@@ -44,121 +78,228 @@ public class Guest extends Person {
     public void printDetails() {
         if (id == -1)
             return;
+        System.out.println("\nGuest Details:");
         super.printDetails();
-        if (aadharNumber != "")
+        if (!aadharNumber.equals(""))
             System.out.print("Aadhar Number   : " + aadharNumber + "\n");
         System.out.print("Rooms Booked    : " + roomNumbers + "\n");
         return;
     }
 
-    
-
     public void getDetails() {
-        Guest tempGuest = new Guest();
-        boolean over = false;
-        while (!over) {
-            System.out.print("\nSearch using: (select one of the following options)\n1. ID\n2. Name\n3. Mobile Number\n4. Aadhar Number\n");
-            Scanner cin = new Scanner(System.in);
+        Scanner cin = new Scanner(System.in);
+        boolean done = false;
+        while (!done) {
+            int opt = 0;
             String inp;
+            System.out.print(
+                    "\nSearch using: (select one of the following options)\n1. ID\n2. Name\n3. Mobile Number\n4. Aadhar Number\n");
             inp = cin.next();
-            // inp += cin.nextLine();
-            int choice = Integer.parseInt(inp);
-            String identification;
-            identification = cin.next();
-            // identification += cin.nextLine();
-            switch (choice) {
-            case 1: {
-                if (com.hms.Hotel.guestsList.containsKey(Integer.parseInt(identification))) {
-                    tempGuest = com.hms.Hotel.guestsList.get(Integer.parseInt(identification));
+            inp += cin.nextLine();
+            opt = Integer.parseInt(inp);
+            while (opt < 1 || opt > 4) {
+                System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                inp = cin.next();
+                inp += cin.nextLine();
+                opt = Integer.parseInt(inp);
+            }
+            switch (opt) {
+
+            case 1:
+                int reqId = 0;
+                System.out.print("\nEnter ID:\n");
+                inp = cin.next();
+                inp += cin.nextLine();
+                reqId = Integer.parseInt(inp);
+                if (com.hms.Hotel.guestsList.containsKey(reqId)) {
+                    this.assign(com.hms.Hotel.guestsList.get(reqId));
+                    done = true;
                     break;
                 } else {
-                    System.out.print("\nNo such guest exists.\n");
-                    continue;
-                }
-            }
-            case 2: {
-                Vector<Guest> matchingRecords = new Vector<>();
-                for (Map.Entry<Integer, Guest> entry : com.hms.Hotel.guestsList.entrySet()) {
-                    if (entry.getValue().name.equals(identification)) {
-                        matchingRecords.add(entry.getValue());
+                    System.out.print("\nNo matching record found!\n");
+                    System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                    inp = cin.next();
+                    inp += cin.nextLine();
+                    while (!inp.equals("Y") && !inp.equals("N")) {
+                        System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                    }
+                    if (inp.equals("N")) {
+                        done = true;
                         break;
                     }
                 }
-                if (matchingRecords.size() == 0) {
-                    System.out.print("\nNo such guest exists.\n");
-                    continue;
-                } else if (matchingRecords.size() == 1) {
-                    tempGuest = matchingRecords.get(0);
-                    break;
+                break;
+            case 2:
+                String reqName = "";
+                System.out.print("\nEnter Name:\n");
+                inp = cin.next();
+                inp += cin.nextLine();
+                reqName = inp;
+                int found = 0;
+                TreeMap<Integer, Guest> MatchingRecords = new TreeMap<Integer, Guest>();
+                for (Map.Entry<Integer, Guest> entry : com.hms.Hotel.guestsList.entrySet())
+                    if (entry.getValue().name.equals(reqName)) {
+                        System.out.println(entry.getKey());
+                        MatchingRecords.put(entry.getKey(), entry.getValue());
+                        found++;
+                    }
+                if (found == 0) {
+                    System.out.print("\nNo matching record found!\n");
+                    System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                    inp = cin.next();
+                    inp += cin.nextLine();
+                    while (!inp.equals("Y") && !inp.equals("N")) {
+                        System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                    }
+                    if (inp.equals("N")) {
+                        done = true;
+                        break;
+                    }
                 } else {
-                    System.out.print("\nMultiple matching records found.\n");
-                    for (int i = 0; i < matchingRecords.size(); i++) {
-                        System.out.print("\n" + (i + 1) + ". ");
-                        matchingRecords.get(i).printDetails();
+                    System.out.print("\nMatching records:\n");
+                    for (Map.Entry<Integer, Guest> entry : MatchingRecords.entrySet()) {
+                        entry.getValue().printDetails();
+                        System.out.print("\n");
                     }
-                    int ch = -1;
-                    while (ch > matchingRecords.size() || ch < 1) {
-                        System.out.print("\nEnter the number of the record you want to choose: ");
-                        ch = Integer.parseInt(cin.nextLine());
-                        continue;
+                    Boolean done1 = false;
+                    while (!done1) {
+                        System.out.print("\nEnter the ID of required guest from the list above:\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        id = Integer.parseInt(inp);
+                        if (!MatchingRecords.containsKey(id)) {
+                            System.out.print("\nEntered ID doesn't match ID of any guest from the list above!\n");
+                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                            while (!inp.equals("Y") && !inp.equals("N")) {
+                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                                inp = cin.next();
+                                inp += cin.nextLine();
+                            }
+                            if (inp.equals("N")) {
+                                done1 = true;
+                                break;
+                            }
+                        } else {
+                            this.assign(MatchingRecords.get(id));
+                            done1 = done = true;
+                            break;
+                        }
                     }
-                    tempGuest = matchingRecords.get(ch - 1);
-                    break;
+                    if (done)
+                        break;
+                    else {
+                        System.out.print("\nNo matching record found!\n");
+                        System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        while (!inp.equals("Y") && !inp.equals("N")) {
+                            System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                        }
+                        if (inp.equals("N")) {
+                            done = true;
+                            break;
+                        }
+                    }
                 }
-            }
-            case 3: {
-                Vector<Guest> matchingRecords = new Vector<>();
-                for (Map.Entry<Integer, Guest> entry : com.hms.Hotel.guestsList.entrySet()) {
-                    if (entry.getValue().mobNumber.equals(identification)) {
-                        matchingRecords.add(entry.getValue());
+            case 3:
+                String reqMobNumber = "";
+                System.out.print("\nEnter Mobile Number:\n");
+                inp = cin.next();
+                inp += cin.nextLine();
+                reqMobNumber = inp;
+                int found1 = 0;
+                TreeMap<Integer, Guest> MatchingRecords1 = new TreeMap<Integer, Guest>();
+                for (Map.Entry<Integer, Guest> entry : com.hms.Hotel.guestsList.entrySet())
+                    if (entry.getValue().mobNumber.equals(reqMobNumber)) {
+                        MatchingRecords1.put(entry.getKey(), entry.getValue());
+                        found1++;
+                    }
+                if (found1 == 0) {
+                    System.out.print("\nNo matching record found!\n");
+                    System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                    inp = cin.next();
+                    inp += cin.nextLine();
+                    while (!inp.equals("Y") && !inp.equals("N")) {
+                        System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                    }
+                    if (inp.equals("N")) {
+                        done = true;
+                        break;
+                    }
+                } else {
+                    System.out.print("\nMatching records:\n");
+                    for (Map.Entry<Integer, Guest> entry : MatchingRecords1.entrySet()) {
+                        entry.getValue().printDetails();
+                        System.out.print("\n");
+                    }
+                    Boolean done2 = false;
+                    while (!done2) {
+                        System.out.print("\nEnter the ID of required guest from the list above:\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        id = Integer.parseInt(inp);
+                        if (!MatchingRecords1.containsKey(id)) {
+                            System.out.print("\nEntered ID doesn't match ID of any guest from the list above!\n");
+                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                            while (!inp.equals("Y") && !inp.equals("N")) {
+                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                                inp = cin.next();
+                                inp += cin.nextLine();
+                            }
+                            if (inp.equals("N")) {
+                                done2 = true;
+                                break;
+                            }
+                        } else {
+                            this.assign(MatchingRecords1.get(id));
+                            done2 = done = true;
+                            break;
+                        }
+                    }
+                }
+
+            case 4:
+                System.out.print("\nEnter Aadhar Number:\n");
+                inp = cin.next();
+                inp += cin.nextLine();
+                if (com.hms.Hotel.guestsList.containsValue(inp)) {
+                    for (Map.Entry<Integer, Guest> entry : com.hms.Hotel.guestsList.entrySet()) {
+                        if (entry.getValue().aadharNumber.equals(inp)) {
+                            this.assign(entry.getValue());
+                            done = true;
+                            break;
+                        }
+                    }
+                } else {
+                    System.out.print("\nNo matching record found!\n");
+                    System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                    inp = cin.next();
+                    inp += cin.nextLine();
+                    while (!inp.equals("Y") && !inp.equals("N")) {
+                        System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                    }
+                    if (inp.equals("N")) {
+                        done = true;
                         break;
                     }
                 }
-                if (matchingRecords.size() == 0) {
-                    System.out.print("\nNo such guest exists.\n");
-                    continue;
-                } else if (matchingRecords.size() == 1) {
-                    tempGuest = matchingRecords.get(0);
-                    break;
-                } else {
-                    System.out.print("\nMultiple matching records found.\n");
-                    for (int i = 0; i < matchingRecords.size(); i++) {
-                        System.out.print("\n" + (i + 1) + ". ");
-                        matchingRecords.get(i).printDetails();
-                    }
-                    int ch = -1;
-                    while (ch > matchingRecords.size() || ch < 1) {
-                        System.out.print("\nEnter the number of the record you want to choose: ");
-                        ch = Integer.parseInt(cin.nextLine());
-                        continue;
-                    }
-                    tempGuest = matchingRecords.get(ch - 1);
-                    break;
-                }
+                break;
             }
-            case 4: {
-                for (Map.Entry<Integer, Guest> entry : com.hms.Hotel.guestsList.entrySet()) {
-                    if (entry.getValue().aadharNumber.equals(identification)) {
-                        tempGuest = entry.getValue();
-                        break;
-                    }
-                }
-            }
-            }
-            over = true;
         }
-
-        if (tempGuest.id != -1) {
-            this.id = tempGuest.id;
-            this.aadharNumber = tempGuest.aadharNumber;
-            this.age = tempGuest.age;
-            this.cat = tempGuest.cat;
-            this.gender = tempGuest.gender;
-            this.mobNumber = tempGuest.mobNumber;
-            this.name = tempGuest.name;
-            this.roomNumbers = tempGuest.roomNumbers;
-        } else
-            return;
+        return;
     }
-
 }
