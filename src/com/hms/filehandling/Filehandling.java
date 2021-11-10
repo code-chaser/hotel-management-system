@@ -177,10 +177,6 @@ public class Filehandling {
             BufferedReader br = new BufferedReader(new FileReader("resources/guests.csv"));
             while ((line = br.readLine()) != null) // returns a Boolean value
             {
-                /**
-                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
-                 * category | aadharNumber | Rooms Vector...
-                 */
                 String[] guestsArray = line.split(","); // use comma as separator
                 Address _add1 = new Address();
                 _add1.strToAdd(guestsArray[5]);
