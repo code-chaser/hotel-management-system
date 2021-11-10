@@ -9,12 +9,12 @@ public class Room {
         room1.checkIn();
         room1.checkOut();
     }
-    private boolean available;
-	private boolean occupied;
-	private Integer capacity;
-	private String desc;
-	private Integer roomSize;
-	private Integer roomNumber;
+	protected Integer roomNumber;
+	protected Integer capacity;
+	protected String desc;
+	protected Integer roomSize;
+    protected boolean available;
+	protected boolean occupied;
 
 	public Room(boolean available, boolean occupied, Integer capacity, String desc, Integer roomSize, Integer roomNumber) {
 		this.available = available;
@@ -31,7 +31,7 @@ public class Room {
         this.capacity = 2;
         this.desc = "";
         this.roomSize = 14;
-        this.roomNumber = 101;
+        this.roomNumber = -1;
     }
 
 	public boolean isAvailable() {

@@ -1,4 +1,0 @@
-id,name,age,gender,mobNumber,address,aadharNumber,RoomsBooked
-
-temp = fileS.nextLine(;
-String[] arr=temp.split(",");
