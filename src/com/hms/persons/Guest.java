@@ -17,7 +17,7 @@ public class Guest extends Person {
     public static void main(String Args[]) {
         Guest g = new Guest();
         g.addPerson(18, 100);
-        g.addPerson(18, 100);
+        // g.addPerson(18, 100);
 
         g.getDetails();
     }
@@ -29,17 +29,22 @@ public class Guest extends Person {
         System.out.print("\nEnter aadhar number:\n");
         inp = cin.next();
         inp += cin.nextLine();
-        aadharNumber = inp;
-        if (com.hms.Hotel.guestsList.entrySet().size() > 0)
+        this.aadharNumber = inp;
+        if (com.hms.Hotel.guestsList.entrySet().size() > 0){
+            this.id = com.hms.Hotel.guestsList.entrySet().size() + 1;
             com.hms.Hotel.guestsList.put(com.hms.Hotel.guestsList.lastEntry().getKey() + 1, this);
-        else
+        }
+        else{ 
+            this.id = 1;
             com.hms.Hotel.guestsList.put(1, this);
+        }
         return;
     }
 
     public void printDetails() {
         if (id == -1)
             return;
+        super.printDetails();
         if (aadharNumber != "")
             System.out.print("Aadhar Number   : " + aadharNumber + "\n");
         System.out.print("Rooms Booked    : " + roomNumbers + "\n");
@@ -49,6 +54,10 @@ public class Guest extends Person {
     
 
     public void getDetails() {
+        for(var entry: com.hms.Hotel.guestsList.entrySet()) {
+            System.out.println(entry.getKey());
+            entry.getValue().printDetails();
+        }
         Guest tempGuest = new Guest();
         boolean over = false;
         while (!over) {

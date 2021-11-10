@@ -22,14 +22,14 @@ abstract class Person {
         System.out.print("\nEnter name:\n");
         inp = cin.next();
         inp += cin.nextLine();
-        name = inp;
+        this.name = inp;
         System.out.print("\nEnter age:\n");
         boolean flag = true;
         while (flag) {
             inp = cin.next();
             inp += cin.nextLine();
             try {
-                age = Integer.parseInt(inp);
+                this.age = Integer.parseInt(inp);
                 if (age <= 0)
                     System.out.print("Please enter a valid age:\n");
                 else if (age < minAge) {
@@ -51,14 +51,14 @@ abstract class Person {
         while (!inp.equals("M") && !inp.equals("F")) {
             inp = cin.next();
             inp += cin.nextLine();
-            gender = inp.charAt(0);
+            this.gender = inp.charAt(0);
             if (inp != "M" && inp != "F")
                 System.out.print("M or F?\n");
         }
         System.out.print("\nEnter mobile number (with country code):\n");
         inp = cin.next();
         inp += cin.nextLine();
-        mobNumber = inp;
+        this.mobNumber = inp;
         add.takeInput();
         return;
     }
