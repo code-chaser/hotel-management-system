@@ -156,10 +156,6 @@ public class Filehandling {
             BufferedReader br = new BufferedReader(new FileReader("resources/staff.csv"));
             while ((line = br.readLine()) != null) // returns a Boolean value
             {
-                /**
-                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
-                 * category | type | salary | workingDays | LoginID | Password
-                 */
                 String[] staffArray = line.split(","); // use comma as separator
                 Address _add = new Address();
                 _add.strToAdd(staffArray[5]);
@@ -167,7 +163,7 @@ public class Filehandling {
                         Integer.parseInt(staffArray[2]), staffArray[3].charAt(0), staffArray[4], _add, staffArray[6],
                         staffArray[7], staffArray[8], Integer.parseInt(staffArray[9]), staffArray[10], staffArray[11]);
 
-                        Hotel.staffList.put(Integer.parseInt(staffArray[0]),_staff);
+                Hotel.staffList.put(Integer.parseInt(staffArray[0]), _staff);
             }
             br.close();
         } catch (IOException e) {
@@ -181,8 +177,22 @@ public class Filehandling {
             BufferedReader br = new BufferedReader(new FileReader("resources/guests.csv"));
             while ((line = br.readLine()) != null) // returns a Boolean value
             {
+                /**
+                 * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
+                 * category | aadharNumber | Rooms Vector...
+                 */
                 String[] guestsArray = line.split(","); // use comma as separator
+                Address _add1 = new Address();
+                _add1.strToAdd(guestsArray[5]);
+                Vector<Integer> roomNumVect = new Vector<Integer>();
+                for (int i = 8; i < guestsArray.length; i++) {
+                    roomNumVect.add(Integer.parseInt(guestsArray[i]));
+                }
+                Guest _guest = new Guest(Integer.parseInt(guestsArray[0]), guestsArray[1],
+                        Integer.parseInt(guestsArray[2]), guestsArray[3].charAt(0), guestsArray[4], _add1,
+                        guestsArray[6], guestsArray[7], roomNumVect);
 
+                Hotel.guestsList.put(Integer.parseInt(guestsArray[0]), _guest);
             }
             br.close();
         } catch (IOException e) {
