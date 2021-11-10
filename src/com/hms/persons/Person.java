@@ -4,9 +4,9 @@ import java.util.*;
 import java.io.*;
 
 abstract class Person {
-    protected int id;
+    protected Integer id;
     protected String name;
-    protected int age;
+    protected Integer age;
     protected char gender;
     protected String mobNumber;
     protected com.hms.persons.Address add;
@@ -113,6 +113,29 @@ abstract class Person {
         System.out.print("Address         : ");
         add.print();
         return;
+    }
+
+    public Integer getId(){
+        return id;
+    }
+
+    public Integer getAge(){
+        return age;
+    }
+    public String getName(){
+        return name;
+    }
+    public char getGender(){
+        return gender;
+    }
+    public String getMobileNumber(){
+        return mobNumber;
+    }
+    public Address getAddress(){
+        return add;
+    }
+    public String getCategory(){
+        return cat;
     }
 
     public abstract void getDetails();
