@@ -4,9 +4,9 @@ import java.util.*;
 import java.io.*;
 
 abstract class Person {
-    int id;
+    Integer id;
     String name;
-    int age;
+    Integer age;
     char gender;
     String mobNumber;
     com.hms.persons.Address add = new com.hms.persons.Address();
@@ -16,7 +16,7 @@ abstract class Person {
         id = -1;
     }
 
-    public void addPerson(int minAge, int maxAge) {
+    public void addPerson(Integer minAge, Integer maxAge) {
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter name:\n");

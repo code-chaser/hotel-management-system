@@ -22,7 +22,7 @@ public class Guest extends Person {
         g.getDetails();
     }
 
-    public void addPerson(int minAge, int maxAge) {
+    public void addPerson(Integer minAge, Integer maxAge) {
         super.addPerson(0, 200);
         Scanner cin = new Scanner(System.in);
         String inp;
@@ -62,7 +62,7 @@ public class Guest extends Person {
             String inp;
             inp = cin.next();
             // inp += cin.nextLine();
-            int choice = Integer.parseInt(inp);
+            Integer choice = Integer.parseInt(inp);
             String identification;
             identification = cin.next();
             // identification += cin.nextLine();
@@ -96,7 +96,7 @@ public class Guest extends Person {
                         System.out.print("\n" + (i + 1) + ". ");
                         matchingRecords.get(i).printDetails();
                     }
-                    int ch = -1;
+                    Integer ch = -1;
                     while (ch > matchingRecords.size() || ch < 1) {
                         System.out.print("\nEnter the number of the record you want to choose: ");
                         ch = Integer.parseInt(cin.nextLine());
@@ -126,7 +126,7 @@ public class Guest extends Person {
                         System.out.print("\n" + (i + 1) + ". ");
                         matchingRecords.get(i).printDetails();
                     }
-                    int ch = -1;
+                    Integer ch = -1;
                     while (ch > matchingRecords.size() || ch < 1) {
                         System.out.print("\nEnter the number of the record you want to choose: ");
                         ch = Integer.parseInt(cin.nextLine());

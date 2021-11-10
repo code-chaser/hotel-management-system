@@ -12,7 +12,7 @@ public class Staff extends Person {
         id = -1;
     }
 
-    public void addPerson(int minAge, int maxAge) {
+    public void addPerson(Integer minAge, Integer maxAge) {
         super.addPerson(18, 60);
         Scanner cin = new Scanner(System.in);
         String inp;
