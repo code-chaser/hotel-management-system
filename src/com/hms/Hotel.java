@@ -1,12 +1,13 @@
-package com.hms.hotel;
+package com.hms;
 
 import com.hms.rooms.*;
 import com.hms.persons.*;
 import java.util.TreeMap;
 
 public class Hotel {
-    static TreeMap<Integer, Room> roomsList = new TreeMap<>();
-    static TreeMap<Integer, Staff> staffList = new TreeMap<>();
+    public static TreeMap<Integer, Room> roomsList = new TreeMap<>();
+    public static TreeMap<Integer, Staff> staffList = new TreeMap<>();
+    public static TreeMap<Integer, Guest> guestsList = new TreeMap<>();
 
     public static void main(String[] args) {
         Room room = new Room();
@@ -16,7 +17,7 @@ public class Hotel {
         printRoomDetails();
     }
 
-    static void printRoomDetails() {
+    public static void printRoomDetails() {
         for (var room : roomsList.entrySet()) {
             System.out.print(room.getKey() + ": ");
             if(room.getKey()/1000 == 0) System.out.print(" ");
