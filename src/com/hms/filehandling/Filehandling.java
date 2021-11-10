@@ -14,12 +14,12 @@ public class Filehandling {
     /**
      * Function to overwrite CSV files with data stored in Maps.
      */
-
-    public void WriteToCSV(){
+    public static void WriteToCSV(){
          //Rooms
         for(Map.Entry<Integer,Room> entry : Hotel.roomsList.entrySet()){
             Room _room = entry.getValue();
-            try(FileWriter writer = new FileWriter("rooms.csv")){
+
+            try(FileWriter writer = new FileWriter("resources/rooms.csv")){
             /**
              * Structure of CSV
              * S.No. | roomNumber | capacity | desc | roomSize | available
@@ -31,20 +31,21 @@ public class Filehandling {
             s.append(_room.getCapacity().toString()+',');
             s.append(_room.getDesc().toString()+',');
             s.append(_room.getRoomSize().toString()+',');
-
+            
+            
             if(_room.isAvailable()){
                 s.append('Y');
             }
             else s.append('N');
 
             s.append('\n');
-
-            writer.append(s.toString());
+    
+            writer.write(s.toString());
             writer.close();
         }
-        catch(Exception e){
+        catch (Exception e) {
             System.out.println(e);
-        }
+          }
         }
 
         //Staff
