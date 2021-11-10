@@ -7,9 +7,20 @@ public class Guest extends Person {
     protected String aadharNumber = "";
     protected Vector<Integer> roomNumbers = new Vector<Integer>(1);
 
+    public static void main(String[] Args) {
+        Guest g1 = new Guest();
+        g1.addPerson(10, 200);
+        g1.addPerson(10, 200);
+        g1.getDetails();
+    }
+
     public Guest() {
         id = -1;
         cat = "Guest";
+    }
+
+    public Guest(Guest g) {
+        this.assign(g);
     }
 
     public String getAadharNumber() {
@@ -52,19 +63,26 @@ public class Guest extends Person {
         inp += cin.nextLine();
         aadharNumber = inp;
         cat = "Guest";
-        if (com.hms.Hotel.guestsList.entrySet().size() > 0)
-            com.hms.Hotel.guestsList.put(com.hms.Hotel.guestsList.lastEntry().getKey() + 1, this);
-        else
-            com.hms.Hotel.guestsList.put(1, this);
+        if (com.hms.Hotel.guestsList.entrySet().size() > 0){
+            this.id = com.hms.Hotel.guestsList.lastEntry().getKey() + 1;
+            
+            com.hms.Hotel.guestsList.put(this.id, new Guest(this));
+        }
+        else{
+            this.id = 1;
+            com.hms.Hotel.guestsList.put(1, new Guest(this));
+        }
         return;
     }
 
     public void printDetails() {
         if (id == -1)
             return;
-        if (aadharNumber != "")
+        if (aadharNumber != ""){
+            super.printDetails();
             System.out.print("Aadhar Number   : " + aadharNumber + "\n");
-        System.out.print("Rooms Booked    : " + roomNumbers + "\n");
+            System.out.print("Rooms Booked    : " + roomNumbers + "\n");
+        }
         return;
     }
 
@@ -123,6 +141,7 @@ public class Guest extends Person {
                 TreeMap<Integer, Guest> MatchingRecords = new TreeMap<Integer, Guest>();
                 for (Map.Entry<Integer, Guest> entry : com.hms.Hotel.guestsList.entrySet())
                     if (entry.getValue().name.equals(reqName)) {
+                        System.out.println(entry.getKey());
                         MatchingRecords.put(entry.getKey(), entry.getValue());
                         found++;
                     }
