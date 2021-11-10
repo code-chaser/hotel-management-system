@@ -2,17 +2,43 @@ package com.hms.persons;
 
 import java.util.*;
 import java.io.*;
+import java.nio.charset.MalformedInputException;
 
 public class Staff extends Person {
     protected String type;
     protected String salary;
     protected Integer workingDays;
+    protected String loginId;
+    protected String password;
+
+    public static void main(String[] args) {
+        Staff staff = new Staff();
+        staff.addPerson(10, 200);
+        staff.addPerson(10, 200);
+        staff.getDetails();
+    }
 
     public Staff() {
         id = -1;
         cat = "Staff";
     }
-    
+
+    public Staff(Staff s) {
+        this.assign(s);
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getType() {
         return type;
     }
@@ -39,6 +65,8 @@ public class Staff extends Person {
 
     public void addPerson(int minAge, int maxAge) {
         super.addPerson(18, 60);
+        if (this.id == -2)
+            return;
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter type of staff:\n");
@@ -49,17 +77,18 @@ public class Staff extends Person {
         salary = inp;
         workingDays = 0;
         cat = "Staff";
-        if (com.hms.Hotel.staffList.entrySet().size() > 0)
-            com.hms.Hotel.staffList.put(com.hms.Hotel.staffList.lastEntry().getKey() + 1, this);
-        else
-            com.hms.Hotel.staffList.put(1, this);
+        if (com.hms.Hotel.staffList.entrySet().size() > 0) {
+            this.id = com.hms.Hotel.staffList.lastEntry().getKey() + 1;
+            com.hms.Hotel.staffList.put(this.id, new Staff(this));
+        } else
+            com.hms.Hotel.staffList.put(1, new Staff(this));
         return;
     }
 
     public void printDetails() {
         if (id == -1)
             return;
-        
+
         System.out.println("\nStaff Details:");
         super.printDetails();
         System.out.print("Type            :" + type + "\n");
@@ -73,6 +102,8 @@ public class Staff extends Person {
         this.type = s.type;
         this.salary = s.salary;
         this.workingDays = s.workingDays;
+        this.loginId = s.loginId;
+        this.password = s.password;
         return;
     }
 
@@ -198,6 +229,7 @@ public class Staff extends Person {
                         }
                     }
                 }
+                break;
             case 3:
                 String reqMobNumber = "";
                 System.out.print("\nEnter Mobile Number:\n");
@@ -257,7 +289,26 @@ public class Staff extends Person {
                             break;
                         }
                     }
+                    if (done)
+                        break;
+                    else {
+                        System.out.print("\nNo matching record found!\n");
+                        System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        while (!inp.equals("Y") && !inp.equals("N")) {
+                            System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                        }
+                        if (inp.equals("N")) {
+                            done = true;
+                            break;
+                        }
+                    }
+
                 }
+                break;
             case 4:
                 String reqType = "";
                 System.out.print("\nEnter Type:\n");
@@ -314,6 +365,23 @@ public class Staff extends Person {
                         } else {
                             this.assign(MatchingRecords2.get(id));
                             done2 = done = true;
+                            break;
+                        }
+                    }
+                    if (done)
+                        break;
+                    else {
+                        System.out.print("\nNo matching record found!\n");
+                        System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        while (!inp.equals("Y") && !inp.equals("N")) {
+                            System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                        }
+                        if (inp.equals("N")) {
+                            done = true;
                             break;
                         }
                     }
