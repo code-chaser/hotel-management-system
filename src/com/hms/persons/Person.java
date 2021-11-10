@@ -80,7 +80,6 @@ abstract class Person {
     public void printDetails() {
         if (id == -1)
             return;
-        System.out.print("\nDetails:\n");
         System.out.print("ID              : " + id + "\n");
         System.out.print("Name            : " + name + "\n");
         System.out.print("Gender          : " + gender + "\n");
