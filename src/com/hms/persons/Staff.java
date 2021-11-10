@@ -7,7 +7,7 @@ import java.nio.charset.MalformedInputException;
 public class Staff extends Person {
     protected String type;
     protected String salary;
-    protected int workingDays;
+    protected Integer workingDays;
     protected String loginId;
     protected String password;
 
@@ -55,12 +55,16 @@ public class Staff extends Person {
         this.salary = salary;
     }
 
-    public int getWorkingDays() {
+    public Integer getWorkingDays() {
         return workingDays;
     }
 
     public void setWorkingDays(int workingDays) {
         this.workingDays = workingDays;
+    }
+
+    public String getPassword(){
+        return password;
     }
 
     public void addPerson(int minAge, int maxAge) {

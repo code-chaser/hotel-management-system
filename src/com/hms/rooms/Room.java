@@ -8,12 +8,12 @@ public class Room {
     }
     private boolean available;
 	private boolean occupied;
-	private int capacity;
+	private Integer capacity;
 	private String desc;
-	private int roomSize;
-	private int roomNumber;
+	private Integer roomSize;
+	private Integer roomNumber;
 
-	public Room(boolean available, boolean occupied, int capacity, String desc, int roomSize, int roomNumber) {
+	public Room(boolean available, boolean occupied, Integer capacity, String desc, Integer roomSize, Integer roomNumber) {
 		this.available = available;
 		this.occupied = occupied;
 		this.capacity = capacity;
@@ -47,11 +47,11 @@ public class Room {
 		this.occupied = occupied;
 	}
 
-	public int getCapacity() {
+	public Integer getCapacity() {
 		return capacity;
 	}
 
-	public void setCapacity(int capacity) {
+	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
 	}
 
@@ -63,19 +63,19 @@ public class Room {
 		this.desc = desc;
 	}
 
-	public int getRoomSize() {
+	public Integer getRoomSize() {
 		return roomSize;
 	}
 
-	public void setRoomSize(int roomSize) {
+	public void setRoomSize(Integer roomSize) {
 		this.roomSize = roomSize;
 	}
 
-	public int getRoomNumber() {
+	public Integer getRoomNumber() {
 		return roomNumber;
 	}
 
-	public void setRoomNumber(int roomNumber) {
+	public void setRoomNumber(Integer roomNumber) {
 		this.roomNumber = roomNumber;
 	}
 
