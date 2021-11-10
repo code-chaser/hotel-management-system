@@ -21,6 +21,7 @@ public class FileHandling {
         Room roomtemp = new Room(true,false,4,"good room",5,69);
         Hotel.roomsList.put(69,roomtemp);
 
+
         Address addtemp = new Address();
         Staff stafftemp = new Staff(123,"Ayush",19,'M',"123456789",addtemp,"cat","type","salary",23,"ayush0402","password");
         Hotel.staffList.put(123,stafftemp);
@@ -47,6 +48,12 @@ public class FileHandling {
      */
     public static void writeToCSV() {
         // Rooms
+        try (FileWriter clearFile = new FileWriter("resources/rooms.csv")) {
+            clearFile.write("");
+            clearFile.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         for (Map.Entry<Integer, Room> entry : Hotel.roomsList.entrySet()) {
             Room _room = entry.getValue();
 
@@ -76,6 +83,12 @@ public class FileHandling {
         }
 
         // Staff
+        try (FileWriter clearFile = new FileWriter("resources/staff.csv")) {
+            clearFile.write("");
+            clearFile.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         for (Map.Entry<Integer, Staff> entry : Hotel.staffList.entrySet()) {
 
             Staff _staff = entry.getValue();
@@ -101,7 +114,7 @@ public class FileHandling {
 
                 s.append('\n');
 
-                writer.write(s.toString());
+                writer.append(s.toString());
                 writer.close();
             } catch (Exception e) {
                 System.out.println(e);
@@ -110,6 +123,12 @@ public class FileHandling {
         }
 
         // Guest
+        try (FileWriter clearFile = new FileWriter("resources/guests.csv")) {
+            clearFile.write("");
+            clearFile.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         for (Map.Entry<Integer, Guest> entry : Hotel.guestsList.entrySet()) {
             Guest _guest = entry.getValue();
 
@@ -136,7 +155,7 @@ public class FileHandling {
                 s.append(roomVector.get(roomVector.size() - 1).toString());
                 s.append('\n');
 
-                writer.write(s.toString());
+                writer.append(s.toString());
                 writer.close();
             } catch (Exception e) {
                 System.out.println(e);
