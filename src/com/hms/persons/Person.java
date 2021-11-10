@@ -9,7 +9,7 @@ abstract class Person {
     int age;
     char gender;
     String mobNumber;
-    com.hms.persons.Address add;
+    com.hms.persons.Address add = new com.hms.persons.Address();
     String cat;
 
     public Person() {
@@ -22,14 +22,14 @@ abstract class Person {
         System.out.print("\nEnter name:\n");
         inp = cin.next();
         inp += cin.nextLine();
-        name = inp;
+        this.name = inp;
         System.out.print("\nEnter age:\n");
         boolean flag = true;
         while (flag) {
             inp = cin.next();
             inp += cin.nextLine();
             try {
-                age = Integer.parseInt(inp);
+                this.age = Integer.parseInt(inp);
                 if (age <= 0)
                     System.out.print("Please enter a valid age:\n");
                 else if (age < minAge) {
@@ -48,17 +48,17 @@ abstract class Person {
         }
         System.out.print("\nGender (M = Male || F = Female):\n");
         inp = "X";
-        while (inp != "M" && inp != "F") {
+        while (!inp.equals("M") && !inp.equals("F")) {
             inp = cin.next();
             inp += cin.nextLine();
-            gender = inp.charAt(0);
+            this.gender = inp.charAt(0);
             if (inp != "M" && inp != "F")
                 System.out.print("M or F?\n");
         }
         System.out.print("\nEnter mobile number (with country code):\n");
         inp = cin.next();
         inp += cin.nextLine();
-        mobNumber = inp;
+        this.mobNumber = inp;
         add.takeInput();
         return;
     }
@@ -90,7 +90,6 @@ abstract class Person {
         return;
     }
 
-    public abstract void getDetails(int id);
+    public abstract void getDetails();
 
-    public abstract void getDetailsFromHistory();
 }
