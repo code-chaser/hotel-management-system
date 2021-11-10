@@ -1,4 +1,2 @@
-id,name,age,gender,mobNumber,address,aadharNumber,RoomsBooked
-
-temp = fileS.nextLine(;
-String[] arr=temp.split(",");
+123,Ayush,19,M,123456789,``````,cat,9234850,123,123
+123,Ayush,19,M,123456789,``````,cat,9234850,123,123
