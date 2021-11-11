@@ -48,7 +48,8 @@ public class Main {
             System.out.print("\n[01] Login (Staff Only)");
             System.out.print("\n[02] See Available Rooms");
             System.out.print("\n[03] Book a Room");
-            System.out.print("\n\n[04] Exit");
+            System.out.print("\n[04] Check-Out");
+            System.out.print("\n\n[00] Exit");
             System.out.print("\n\n---------------------------");
             System.out.print("\n\nEnter your choice:\n");
             inp = cin.next();
@@ -89,32 +90,32 @@ public class Main {
                 System.out.print("\n\n---------------------------");
                 break;
             case 2:
-            // Room Details
+                // Room Details
                 System.out.println("\n\n---------------------------");
                 Hotel.printRoomDetails();
                 System.out.println("\n\n---------------------------");
 
                 break;
             case 3:
-            // Book a Room
+                // Book a Room
                 System.out.print("\n\n---------------------------");
                 Hotel.printRoomDetails();
                 System.out.println("Room Number: ");
                 int roomNum = cin.nextInt();
-                if(!Hotel.roomsList.containsKey(roomNum)){
+                if (!Hotel.roomsList.containsKey(roomNum)) {
                     System.out.println("N/A");
                     break;
                 }
-                if(!Hotel.roomsList.get(roomNum).isAvailable()){
+                if (!Hotel.roomsList.get(roomNum).isAvailable()) {
                     System.out.println("Room N/A");
                     break;
                 }
                 Guest guest = new Guest();
                 guest.inputDetails();
-                for(var entry: Hotel.guestsList.entrySet()){
+                for (var entry : Hotel.guestsList.entrySet()) {
                     int tempID = entry.getValue().getId();
                     entry.getValue().setID(-1);
-                    if(guest.equals(entry.getValue())) {
+                    if (guest.equals(entry.getValue())) {
                         entry.getValue().addRoomNumber(roomNum);
                         entry.getValue().setID(tempID);
                         System.out.println("Room booked successfully!");
@@ -124,14 +125,57 @@ public class Main {
                 }
                 guest.addRoomNumber(roomNum);
                 Hotel.roomsList.get(roomNum).book();
+                guest.setID(Hotel.guestsList.lastEntry().getKey() + 1);
+                Hotel.guestsList.put(guest.getId(), new Guest(guest));
                 break;
-            case 4:
+            case 0:
                 System.out.print("\n\nExiting...");
                 done = true;
                 System.out.print("\n\n---------------------------");
                 break;
-            case 5:
+            case 4:
                 System.out.print("\n\n---------------------------");
+                System.out.print("\n\nCheck-Out");
+                System.out.print("\n---------------------------\n");
+                System.out.print("\nEnter your Phone No. : ");
+                inp = cin.next();
+                inp += cin.nextLine();
+                String phoneNo = inp;
+                System.out.print("\n---------------------------\n");
+                for (var entry : Hotel.guestsList.entrySet()) {
+                    if (entry.getValue().getMobileNumber().equals(phoneNo)) {
+                        System.out.print("\n\nGuest Details");
+                        System.out.print("\n---------------------------\n");
+                        entry.getValue().printDetails();
+                        System.out.print("\n---------------------------\n");
+                        System.out.print("\nEnter the Room Number: ");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        int roomNum2 = Integer.parseInt(inp);
+                        if ((!Hotel.roomsList.containsKey(roomNum2))) {
+                            System.out.println("N/A");
+                            break;
+                        }
+                        if (Hotel.roomsList.get(roomNum2).isAvailable()) {
+                            System.out.println("Room not Booked");
+                            break;
+                        }
+                        if (!entry.getValue().getRoomNumbers().contains(roomNum2)) {
+                            System.out.println("This isn't a room Booked by you.");
+
+                            break;
+                        }
+                        entry.getValue().removeRoomNumber(roomNum2);
+                        Hotel.roomsList.get(roomNum2).checkOut();
+                        System.out.println("Check-Out Successful!");
+                        if (entry.getValue().getRoomNumbers().size() == 0) {
+                            Hotel.guestsList.remove(entry.getKey());
+
+                        }
+                        break;
+                    }
+                }
+                break;
 
             default:
                 System.out.print("\n\nInvalid choice!");
