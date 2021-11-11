@@ -76,6 +76,31 @@ public class Staff extends Person {
         return password;
     }
 
+    public void inputDetails() {
+        super.addPerson(18, 60);
+        if (this.id == -2)
+            return;
+        Scanner cin = new Scanner(System.in);
+        String inp;
+        System.out.print("\nEnter type of staff:\n");
+        inp = cin.next();
+        inp += cin.nextLine();
+        type = inp;
+        System.out.print("\nEnter salary of staff:\n");
+        inp = cin.next();
+        inp += cin.nextLine();
+        salary = inp;
+        System.out.println("\nGive staff a login id:\n");
+        inp = cin.next();
+        inp += cin.nextLine();
+        loginId = inp;
+        System.out.println("\nGive staff a password:\n");
+        inp = cin.next();
+        inp += cin.nextLine();
+        password = inp;
+        workingDays = 0;
+        cat = "Staff";
+    }
     public void addPerson(Integer minAge, Integer maxAge) {
         super.addPerson(18, 60);
         if (this.id == -2)

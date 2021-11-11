@@ -110,7 +110,18 @@ public class Main {
                     break;
                 }
                 Guest guest = new Guest();
-                guest.addPerson(10, 100);
+                guest.inputDetails();
+                for(var entry: Hotel.guestsList.entrySet()){
+                    int tempID = entry.getValue().getId();
+                    entry.getValue().setID(-1);
+                    if(guest.equals(entry.getValue())) {
+                        entry.getValue().addRoomNumber(roomNum);
+                        entry.getValue().setID(tempID);
+                        System.out.println("Room booked successfully!");
+                        break;
+                    }
+                    entry.getValue().setID(tempID);
+                }
                 guest.addRoomNumber(roomNum);
                 Hotel.roomsList.get(roomNum).book();
                 break;

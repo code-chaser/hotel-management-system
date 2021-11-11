@@ -29,6 +29,10 @@ public class Guest extends Person {
         this.roomNumbers = roomNumbers;
     }
 
+    public void setID(int id) {
+        this.id = id;
+    }
+    
     public String getAadharNumber() {
         return aadharNumber;
     }
@@ -81,6 +85,17 @@ public class Guest extends Person {
         return;
     }
 
+    public void inputDetails() {
+        super.addPerson(0, 200);
+        if(this.id == -2) return;
+        Scanner cin = new Scanner(System.in);
+        String inp;
+        System.out.print("\nEnter aadhar number:\n");
+        inp = cin.next();
+        inp += cin.nextLine();
+        aadharNumber = inp;
+        cat = "Guest";
+    }
     public void printDetails() {
         if (id == -1)
             return;
