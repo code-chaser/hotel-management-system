@@ -170,7 +170,6 @@ public class Main {
                         System.out.println("Check-Out Successful!");
                         if (entry.getValue().getRoomNumbers().size() == 0) {
                             Hotel.guestsList.remove(entry.getKey());
-
                         }
                         break;
                     }
