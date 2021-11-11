@@ -171,6 +171,7 @@ public class Main {
                         if (entry.getValue().getRoomNumbers().size() == 0) {
                             Hotel.guestsList.remove(entry.getKey());
                         }
+                        Hotel.roomsList.get(roomNum2).generateBill();
                         break;
                     }
                 }
