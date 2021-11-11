@@ -4,11 +4,11 @@ import java.util.*;
 import java.io.*;
 
 public class Address {
-    private String line1, line2;
-    private String city;
-    private String state;
-    private String pinCode;
-    private String country;
+    protected String line1, line2;
+    protected String city;
+    protected String state;
+    protected String pinCode;
+    protected String country;
 
     public Address() {
         line1 = line2 = city = state = pinCode = country = "";
