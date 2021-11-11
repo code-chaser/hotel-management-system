@@ -29,8 +29,25 @@ ___
 <br>
 
 ___
-## SCREENSHOTS
+## Screenshots
 
 <br>
+
+<!-- screenshots here -->
+
+<br>
+
 ___
+## Made with 🤍 by:
+- Yashvardhan Baid - [code-chaser](https://github.com/code-chaser)
+- Shreya Tarwey - [ShreyaTarwey](https://github.com/ShreyaTarwey)
+- Ayush Kumar - [ayush0402](https://github.com/ayush0402)
+- Prerak Mathur - [PrerakMathur20](https://github.com/PrerakMathur20)
+- Akshay Bhatnagar - [Astrra](https://github.com/Astrra)
+- Tejas Taneja - [Tj8864](https://github.com/Tj8864)
+
+<br>
+
+___
+> #### _*Hope you like it!*_
 ___
