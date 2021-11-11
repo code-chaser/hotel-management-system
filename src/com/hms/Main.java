@@ -108,18 +108,21 @@ public class Main {
                                 System.out.print("Enter new salary: ");
                                 String salary = cin.next();
                                 temp_staff.setSalary(salary);
+                                Hotel.staffList.get(temp_staff.getId()).assign(temp_staff);
                                 break;
                             }
                             case 3: {
                                 System.out.print("Enter new password: ");
                                 String password1 = cin.next();
                                 temp_staff.setPassword(password1);
+                                Hotel.staffList.get(temp_staff.getId()).assign(temp_staff);
                                 break;
                             }
                             case 1: {
                                 System.out.print("Enter new type: ");
                                 String name = cin.next();
                                 temp_staff.setType(name);
+                                Hotel.staffList.get(temp_staff.getId()).assign(temp_staff);
                                 break;
                             }
                             default: {
@@ -152,12 +155,15 @@ public class Main {
                                 System.out.println("Enter new phone number: ");
                                 String phoneno = cin.next();
                                 staff.setMobileNumber(phoneno);
+                                Hotel.staffList.get(staff.getId()).assign(staff);
                                 break;
                             }
                             case 2: {
                                 System.out.println("Enter new password: ");
                                 String password1 = cin.next();
                                 staff.setPassword(password1);
+                                Hotel.staffList.get(staff.getId()).assign(staff);
+                                break;
                             }
                             }
                             break;
