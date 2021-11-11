@@ -82,7 +82,12 @@ public class Main {
                     staff.printDetails();
                     System.out.print("\n---------------------------\n");
                     if (staff.getType() == "ADMIN") {
-                        System.out.println("<Insert options here>");
+                        System.out.println("[01] Show all Staff Details");
+                        System.out.println("[02] Add a new Staff Member");
+                        System.out.println("[03] Change Staff Details");
+                        System.out.println("[04] Remove a Staff Member");
+                        System.out.println("[05] Show all Guest Details");
+                        System.out.print("Your Input: ");
                         int ch;
                         ch = Integer.parseInt(cin.next());
                         switch (ch) {
@@ -101,7 +106,13 @@ public class Main {
                             temp_staff.getDetails();
                             if (temp_staff.getId().equals(-1))
                                 break;
-                            System.out.println("kya change karoge? \n type \n salary \n password");
+                            // System.out.println("kya change karoge? \n type \n salary \n password");
+                            System.out.print("\nEnter the field you want to change: ");
+                            System.out.println("[01] Staff Type");
+                            System.out.println("[02] Salary");
+                            System.out.println("[03] Password");
+                            System.out.print("Your Input: ");
+
                             int ch1 = Integer.parseInt(cin.next());
                             switch (ch1) {
                             case 2: {
