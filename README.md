@@ -38,6 +38,14 @@ ___
 <br>
 
 ___
+## Tech Stack
+- JAVA
+___
+
+<br>
+
+
+
 ## Made with 🤍 by:
 - Yashvardhan Baid - [code-chaser](https://github.com/code-chaser)
 - Shreya Tarwey - [ShreyaTarwey](https://github.com/ShreyaTarwey)
