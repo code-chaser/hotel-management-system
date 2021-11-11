@@ -129,6 +129,7 @@ public class Main {
             }
 
         }
+
         FileHandling.writeToCSV();
         return;
     }
