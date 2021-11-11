@@ -54,7 +54,15 @@ public class Guest extends Person {
     }
 
     public void removeRoomNumber(int roomNumber) {
-        roomNumbers.remove(roomNumber);
+        int index = Integer.MAX_VALUE;
+        for (int i = 0; i < roomNumbers.size(); i++) {
+            if (roomNumbers.get(i) == roomNumber) {
+                index = i;
+                break;
+            }
+        }
+        if(index != Integer.MAX_VALUE)
+            roomNumbers.remove(index);
     }
 
     public void assign(Guest g) {

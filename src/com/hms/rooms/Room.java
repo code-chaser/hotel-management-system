@@ -10,23 +10,25 @@ public class Room {
         room1.checkIn();
         room1.checkOut();
     }
-	protected Integer roomNumber;
-	protected Integer capacity;
-	protected String desc;
-	protected Integer roomSize;
+
+    protected Integer roomNumber;
+    protected Integer capacity;
+    protected String desc;
+    protected Integer roomSize;
     protected boolean available;
-	protected boolean occupied;
+    protected boolean occupied;
 
-	public Room(boolean available, boolean occupied, Integer capacity, String desc, Integer roomSize, Integer roomNumber) {
-		this.available = available;
-		this.occupied = occupied;
-		this.capacity = capacity;
-		this.desc = desc;
-		this.roomSize = roomSize;
-		this.roomNumber = roomNumber;
-	}
+    public Room(boolean available, boolean occupied, Integer capacity, String desc, Integer roomSize,
+            Integer roomNumber) {
+        this.available = available;
+        this.occupied = occupied;
+        this.capacity = capacity;
+        this.desc = desc;
+        this.roomSize = roomSize;
+        this.roomNumber = roomNumber;
+    }
 
-    public Room(){
+    public Room() {
         this.available = true;
         this.occupied = false;
         this.capacity = 2;
@@ -35,59 +37,58 @@ public class Room {
         this.roomNumber = -1;
     }
 
-	public boolean isAvailable() {
-		return available;
-	}
+    public boolean isAvailable() {
+        return available;
+    }
 
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
-	public boolean isOccupied() {
-		return occupied;
-	}
+    public boolean isOccupied() {
+        return occupied;
+    }
 
-	public void setOccupied(boolean occupied) {
-		this.occupied = occupied;
-	}
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
 
-	public Integer getCapacity() {
-		return capacity;
-	}
+    public Integer getCapacity() {
+        return capacity;
+    }
 
-	public void setCapacity(Integer capacity) {
-		this.capacity = capacity;
-	}
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
 
-	public String getDesc() {
-		return desc;
-	}
+    public String getDesc() {
+        return desc;
+    }
 
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
-	public Integer getRoomSize() {
-		return roomSize;
-	}
+    public Integer getRoomSize() {
+        return roomSize;
+    }
 
-	public void setRoomSize(Integer roomSize) {
-		this.roomSize = roomSize;
-	}
+    public void setRoomSize(Integer roomSize) {
+        this.roomSize = roomSize;
+    }
 
-	public Integer getRoomNumber() {
-		return roomNumber;
-	}
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
 
-	public void setRoomNumber(Integer roomNumber) {
-		this.roomNumber = roomNumber;
-	}
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 
     public void getDetails() {
         Scanner cin = new Scanner(System.in);
         boolean done = false;
-        while (!done) 
-        {
+        while (!done) {
             int opt = 0;
             String inp;
             System.out.print(
@@ -95,165 +96,139 @@ public class Room {
             inp = cin.next();
             inp += cin.nextLine();
             opt = Integer.parseInt(inp);
-            while (opt < 1 || opt > 3) 
-            {
+            while (opt < 1 || opt > 3) {
                 System.out.print("\nInvalid Choice!\nEnter again:\n ");
                 inp = cin.next();
                 inp += cin.nextLine();
                 opt = Integer.parseInt(inp);
             }
-            switch (opt) 
-            {
+            switch (opt) {
 
-                case 1:
-                for(var entry: Hotel.roomsList.entrySet())
-                    {
-                        if(entry.getValue().equals("Classic"))
-                        {
-                            System.out.println("Classic Room is available.");
-                            done = true;
-                            break;
+            case 1:
+                for (var entry : Hotel.roomsList.entrySet()) {
+                    if (entry.getValue().equals("Classic")) {
+                        System.out.println("Classic Room is available.");
+                        done = true;
+                        break;
 
-                        }
-                
-                            
-                        else {
-                            System.out.print("\nSorry! Currently there is no Classic room avialble.\n");
-                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                    }
+
+                    else {
+                        System.out.print("\nSorry! Currently there is no Classic room avialble.\n");
+                        System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        while (!inp.equals("Y") && !inp.equals("N")) {
+                            System.out.print("\nInvalid Choice!\nEnter again:\n ");
                             inp = cin.next();
                             inp += cin.nextLine();
-                            while (!inp.equals("Y") && !inp.equals("N"))
-                            {
-                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
-                                inp = cin.next();
-                                inp += cin.nextLine();
-                            }
-                            if (inp.equals("N"))
-                            {
-                                done = true;
-                                break;
-                            }
                         }
-                    
-                    }
-                
-
-                case 2:
-                for(var entry: Hotel.roomsList.entrySet())
-                    {
-                        if(entry.getValue().equals("Deluxe"))
-                        {
-                            System.out.println("Deluxe Room is available.");
+                        if (inp.equals("N")) {
                             done = true;
                             break;
-
                         }
-                
-                            
-                        else {
-                            System.out.print("\nSorry! Currently there is no Deluxe room avialble.\n");
-                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                    }
+
+                }
+
+            case 2:
+                for (var entry : Hotel.roomsList.entrySet()) {
+                    if (entry.getValue().equals("Deluxe")) {
+                        System.out.println("Deluxe Room is available.");
+                        done = true;
+                        break;
+
+                    }
+
+                    else {
+                        System.out.print("\nSorry! Currently there is no Deluxe room avialble.\n");
+                        System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        while (!inp.equals("Y") && !inp.equals("N")) {
+                            System.out.print("\nInvalid Choice!\nEnter again:\n ");
                             inp = cin.next();
                             inp += cin.nextLine();
-                            while (!inp.equals("Y") && !inp.equals("N"))
-                            {
-                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
-                                inp = cin.next();
-                                inp += cin.nextLine();
-                            }
-                            if (inp.equals("N"))
-                            {
-                                done = true;
-                                break;
-                            }
                         }
-                    
+                        if (inp.equals("N")) {
+                            done = true;
+                            break;
+                        }
                     }
+
+                }
                 break;
-                case 3:
-                for(var entry: Hotel.roomsList.entrySet())
-                    {
-                        if(entry.getValue().equals("Suite"))
-                        {
-                            System.out.println("Suite is available.");
-                            done = true;
-                            break;
+            case 3:
+                for (var entry : Hotel.roomsList.entrySet()) {
+                    if (entry.getValue().equals("Suite")) {
+                        System.out.println("Suite is available.");
+                        done = true;
+                        break;
 
-                        }
-                
-                            
-                        else {
-                            System.out.print("\nSorry! Currently there is no Suites avialble.\n");
-                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                    }
+
+                    else {
+                        System.out.print("\nSorry! Currently there is no Suites avialble.\n");
+                        System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                        inp = cin.next();
+                        inp += cin.nextLine();
+                        while (!inp.equals("Y") && !inp.equals("N")) {
+                            System.out.print("\nInvalid Choice!\nEnter again:\n ");
                             inp = cin.next();
                             inp += cin.nextLine();
-                            while (!inp.equals("Y") && !inp.equals("N"))
-                            {
-                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
-                                inp = cin.next();
-                                inp += cin.nextLine();
-                            }
-                            if (inp.equals("N"))
-                            {
-                                done = true;
-                                break;
-                            }
                         }
-                    
+                        if (inp.equals("N")) {
+                            done = true;
+                            break;
+                        }
                     }
+
+                }
                 break;
 
-                default:
-                 System.out.println("Invalid Choice");
-                 break;
+            default:
+                System.out.println("Invalid Choice");
+                break;
 
             }
         }
-}
+    }
 
-
-	public void book() {
-		if (this.isAvailable()) {
+    public void book() {
+        if (this.isAvailable()) {
             setAvailable(false);
-        }
-        else{
+        } else {
             System.out.println("Room is not available");
         }
     }
 
     public void checkIn() {
-        if(!isAvailable() && !isOccupied()) {
+        if (!isAvailable() && !isOccupied()) {
             setOccupied(true);
-        }
-        else if(isAvailable()) {
+        } else if (isAvailable()) {
             System.out.println("Room is not booked");
-        }
-        else {
+        } else {
             System.out.println("Room is already occupied");
         }
     }
 
     public void checkOut() {
-        if(isOccupied()){
+        if (isOccupied()) {
             setAvailable(true);
             setOccupied(false);
             System.out.println(generateBill());
-        }
-        else {
+        } else {
             System.out.println("Room was not occupied");
         }
     }
 
     public String generateBill() {
-        int baseCost = 100*roomSize;
-        float tax = (float) (baseCost*0.18);
+        int baseCost = 100 * roomSize;
+        float tax = (float) (baseCost * 0.18);
         float totalCost = baseCost + tax;
         String bill;
-        bill = "Room Number: " + roomNumber + "\n" +
-                "Room Size: " + roomSize + "\n" +
-                "Base Cost: " + baseCost + "\n" +
-                "Tax: " + tax + "\n" +
-                "Total Cost: " + totalCost;
+        bill = "Room Number: " + roomNumber + "\n" + "Room Size: " + roomSize + "\n" + "Base Cost: " + baseCost + "\n"
+                + "Tax: " + tax + "\n" + "Total Cost: " + totalCost;
         return bill;
     }
 }
