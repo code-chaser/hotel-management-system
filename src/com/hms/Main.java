@@ -81,7 +81,7 @@ public class Main {
                     System.out.print("\n\n---------------------------\n");
                     staff.printDetails();
                     System.out.print("\n---------------------------\n");
-                    if (staff.getType() == "ADMIN") {
+                    if (staff.getType().equals("ADMIN") ) {
                         System.out.println("[01] Show all Staff Details");
                         System.out.println("[02] Add a new Staff Member");
                         System.out.println("[03] Change Staff Details");
