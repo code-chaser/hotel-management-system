@@ -71,20 +71,7 @@ public class Main {
                     System.out.print("\n\n---------------------------\n");
                     staff.printDetails();
                     System.out.print("\n---------------------------\n");
-                    // staff menu
-                    boolean staffDone = false;
-                    while (!staffDone) {
-                        System.out.print("\n\n---------- STAFF MENU ----------");
-                        System.out.print("\n\n---------------------------\n");
-                        System.out.print("\n[01] See Available Rooms");
-                        System.out.print("\n[02] Book a Room");
-                        System.out.print("\n[03] Logout");
-                        System.out.print("\n\n[04] Exit");
-                        System.out.print("\n\n---------------------------");
-                        System.out.print("\n\nEnter your choice:\n");
-                        inp = cin.next();
-                        choice = Integer.parseInt(inp);
-                        System.out.print("\n---------------------------");
+                    //staff menu
                 } else {
                     System.out.print("Login failed!\nInvalid username or password.");
                 }
