@@ -35,6 +35,8 @@ public class Main {
         // ---------------------------
 
         // main(); Body
+        Staff s = new Staff();
+        s.addPerson(10, 200);
         Scanner cin = new Scanner(System.in);
         boolean done = false;
         while (!done) {
@@ -100,4 +102,3 @@ public class Main {
         return;
     }
 }
-}}
