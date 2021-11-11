@@ -20,8 +20,8 @@ class ThreadForRoomsRead implements Runnable {
         String line = "";
         try {
             // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br = new BufferedReader(new FileReader("resources/rooms.csv"));
-            while ((line = br.readLine()) != null) // returns a Boolean value
+            BufferedReader br1 = new BufferedReader(new FileReader("resources/rooms.csv"));
+            while ((line = br1.readLine()) != null) // returns a Boolean value
             {
                 String[] roomArray = line.split(","); // use comma as separator
                 boolean avail;
@@ -33,7 +33,7 @@ class ThreadForRoomsRead implements Runnable {
                         Integer.parseInt(roomArray[3]), Integer.parseInt(roomArray[0]));
                 Hotel.roomsList.put(Integer.parseInt(roomArray[0]), _room);
             }
-            br.close();
+            br1.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,8 +47,8 @@ class ThreadForStaffRead implements Runnable {
         String line = "";
         try {
             // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br = new BufferedReader(new FileReader("resources/staff.csv"));
-            while ((line = br.readLine()) != null) // returns a Boolean value
+            BufferedReader br2 = new BufferedReader(new FileReader("resources/staff.csv"));
+            while ((line = br2.readLine()) != null) // returns a Boolean value
             {
                 String[] staffArray = line.split(","); // use comma as separator
                 Address _add = new Address();
@@ -59,7 +59,7 @@ class ThreadForStaffRead implements Runnable {
 
                 Hotel.staffList.put(Integer.parseInt(staffArray[0]), _staff);
             }
-            br.close();
+            br2.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,8 +73,8 @@ class ThreadForGuestsRead implements Runnable {
         String line = "";
         try {
             // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br = new BufferedReader(new FileReader("resources/guests.csv"));
-            while ((line = br.readLine()) != null) // returns a Boolean value
+            BufferedReader br3 = new BufferedReader(new FileReader("resources/guests.csv"));
+            while ((line = br3.readLine()) != null) // returns a Boolean value
             {
                 String[] guestsArray = line.split(","); // use comma as separator
                 Address _add1 = new Address();
@@ -89,7 +89,7 @@ class ThreadForGuestsRead implements Runnable {
 
                 Hotel.guestsList.put(Integer.parseInt(guestsArray[0]), _guest);
             }
-            br.close();
+            br3.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,28 +99,36 @@ class ThreadForGuestsRead implements Runnable {
 class ThreadForRoomsWrite implements Runnable {
     @Override
     public void run() {
+        try {
+            FileWriter clearFile1 = new FileWriter("resources/rooms.csv");
+            clearFile1.write("");
+            clearFile1.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         for (Map.Entry<Integer, Room> entry : Hotel.roomsList.entrySet()) {
             Room _room = entry.getValue();
 
-            try (FileWriter writer = new FileWriter("resources/rooms.csv")) {
+            try {
+                FileWriter writer1 = new FileWriter("resources/rooms.csv", true);
                 /**
                  * Structure of rooms.csv : roomNumber | capacity | desc | roomSize | available
                  */
-                StringBuilder s = new StringBuilder();
-                s.append(_room.getRoomNumber().toString() + ',');
-                s.append(_room.getCapacity().toString() + ',');
-                s.append(_room.getDesc().toString() + ',');
-                s.append(_room.getRoomSize().toString() + ',');
+                StringBuilder s1 = new StringBuilder();
+                s1.append(_room.getRoomNumber().toString() + ',');
+                s1.append(_room.getCapacity().toString() + ',');
+                s1.append(_room.getDesc().toString() + ',');
+                s1.append(_room.getRoomSize().toString() + ',');
 
                 if (_room.isAvailable()) {
-                    s.append('Y');
+                    s1.append('Y');
                 } else
-                    s.append('N');
+                    s1.append('N');
 
-                s.append('\n');
+                s1.append('\n');
 
-                writer.write(s.toString());
-                writer.close();
+                writer1.append(s1.toString());
+                writer1.close();
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -131,33 +139,41 @@ class ThreadForRoomsWrite implements Runnable {
 class ThreadForStaffWrite implements Runnable {
     @Override
     public void run() {
+        try {
+            FileWriter clearFile2 = new FileWriter("resources/staff.csv");
+            clearFile2.write("");
+            clearFile2.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         for (Map.Entry<Integer, Staff> entry : Hotel.staffList.entrySet()) {
 
             Staff _staff = entry.getValue();
 
-            try (FileWriter writer = new FileWriter("resources/staff.csv")) {
+            try {
+                FileWriter writer2 = new FileWriter("resources/staff.csv", true);
                 /**
                  * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
                  * category | type | salary | workingDays | LoginID | Password
                  */
-                StringBuilder s = new StringBuilder();
-                s.append(_staff.getId().toString() + ',');
-                s.append(_staff.getName() + ',');
-                s.append(_staff.getAge().toString() + ',');
-                s.append(_staff.getGender() + ',');
-                s.append(_staff.getMobileNumber() + ',');
-                s.append(_staff.getAddress().addToStr() + ',');
-                s.append(_staff.getCategory() + ',');
-                s.append(_staff.getType() + ',');
-                s.append(_staff.getSalary() + ',');
-                s.append(_staff.getWorkingDays().toString() + ',');
-                s.append(_staff.getLoginId() + ',');
-                s.append(_staff.getPassword());
+                StringBuilder s2 = new StringBuilder();
+                s2.append(_staff.getId().toString() + ',');
+                s2.append(_staff.getName() + ',');
+                s2.append(_staff.getAge().toString() + ',');
+                s2.append(_staff.getGender().toString() + ',');
+                s2.append(_staff.getMobileNumber() + ',');
+                s2.append(_staff.getAddress().addToStr() + ',');
+                s2.append(_staff.getCategory() + ',');
+                s2.append(_staff.getType() + ',');
+                s2.append(_staff.getSalary() + ',');
+                s2.append(_staff.getWorkingDays().toString() + ',');
+                s2.append(_staff.getLoginId() + ',');
+                s2.append(_staff.getPassword());
 
-                s.append('\n');
+                s2.append('\n');
 
-                writer.write(s.toString());
-                writer.close();
+                writer2.append(s2.toString());
+                writer2.close();
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -169,34 +185,42 @@ class ThreadForStaffWrite implements Runnable {
 class ThreadForGuestsWrite implements Runnable {
     @Override
     public void run() {
+        try {
+            FileWriter clearFile3 = new FileWriter("resources/guests.csv");
+            clearFile3.write("");
+            clearFile3.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         for (Map.Entry<Integer, Guest> entry : Hotel.guestsList.entrySet()) {
             Guest _guest = entry.getValue();
 
-            try (FileWriter writer = new FileWriter("resources/guests.csv")) {
+            try {
+                FileWriter writer3 = new FileWriter("resources/guests.csv", true);
                 /**
                  * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
                  * category | aadharNumber | Rooms Vector...
                  */
-                StringBuilder s = new StringBuilder();
-                s.append(_guest.getId().toString() + ',');
-                s.append(_guest.getName() + ',');
-                s.append(_guest.getAge().toString() + ',');
-                s.append(_guest.getGender() + ',');
-                s.append(_guest.getMobileNumber() + ',');
-                s.append(_guest.getAddress().addToStr() + ',');
-                s.append(_guest.getCategory() + ',');
-                s.append(_guest.getAadharNumber() + ',');
+                StringBuilder s3 = new StringBuilder();
+                s3.append(_guest.getId().toString() + ',');
+                s3.append(_guest.getName() + ',');
+                s3.append(_guest.getAge().toString() + ',');
+                s3.append(_guest.getGender().toString() + ',');
+                s3.append(_guest.getMobileNumber() + ',');
+                s3.append(_guest.getAddress().addToStr() + ',');
+                s3.append(_guest.getCategory() + ',');
+                s3.append(_guest.getAadharNumber() + ',');
 
                 Vector<Integer> roomVector = _guest.getRoomNumbers();
 
                 for (Integer i = 0; i < roomVector.size() - 1; i++) {
-                    s.append(roomVector.get(i).toString() + ',');
+                    s3.append(roomVector.get(i).toString() + ',');
                 }
-                s.append(roomVector.get(roomVector.size() - 1).toString());
-                s.append('\n');
+                s3.append(roomVector.get(roomVector.size() - 1).toString());
+                s3.append('\n');
 
-                writer.write(s.toString());
-                writer.close();
+                writer3.append(s3.toString());
+                writer3.close();
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -206,36 +230,40 @@ class ThreadForGuestsWrite implements Runnable {
 }
 
 public class FileHandling {
-    public static void main(String[] args) {
-        Room roomtemp = new Room(true,false,4,"good room",5,123);
-        Hotel.roomsList.put(123,roomtemp);
- 
-        Address addtemp = new Address();
-        Staff stafftemp = new Staff(123,"Ayush",19,'M',"123456789",addtemp,"cat","type","salary",23,"ayush0402","password");
-        Hotel.staffList.put(123,stafftemp);
 
-        writeToCSV();
-
-        Hotel.roomsList.clear();
-        Hotel.staffList.clear();
-
-        readFromCSV();
-
-        Hotel.printRoomDetails();
-        Hotel.printStaffDetails();
-    }
     /**
      * Function to overwrite data into the Maps from CSV files.
      */
     public static void readFromCSV() {
         // Filling roomsList
-        new Thread(new ThreadForRoomsRead()).start();
+        ThreadForRoomsRead threadForRoomsRead = new ThreadForRoomsRead();
+        Thread t1 = new Thread(threadForRoomsRead);
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
 
         // Filling staffList
-        new Thread(new ThreadForStaffRead()).start();
+        ThreadForStaffRead threadForStaffRead = new ThreadForStaffRead();
+        Thread t2 = new Thread(threadForStaffRead);
+        t2.start();
+        try {
+            t2.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
 
         // Filling guestsList
-        new Thread(new ThreadForGuestsRead()).start();
+        ThreadForGuestsRead threadForGuestsRead = new ThreadForGuestsRead();
+        Thread t3 = new Thread(threadForGuestsRead);
+        t3.start();
+        try {
+            t3.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
 
         return;
     }
@@ -245,14 +273,87 @@ public class FileHandling {
      */
     public static void writeToCSV() {
         // Filling rooms.csv
-        new Thread(new ThreadForRoomsWrite()).start();
+        ThreadForRoomsWrite threadForRoomsWrite = new ThreadForRoomsWrite();
+        Thread t1 = new Thread(threadForRoomsWrite);
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
 
         // Filling staff.csv
-        new Thread(new ThreadForStaffWrite()).start();
+        ThreadForStaffWrite threadForStaffWrite = new ThreadForStaffWrite();
+        Thread t2 = new Thread(threadForStaffWrite);
+        t2.start();
+        try {
+            t2.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
 
         // Filling guests.csv
-        new Thread(new ThreadForGuestsWrite()).start();
+        ThreadForGuestsWrite threadForGuestsWrite = new ThreadForGuestsWrite();
+        Thread t3 = new Thread(threadForGuestsWrite);
+        t3.start();
+        try {
+            t3.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
 
         return;
     }
+
+    public static void main(String[] args) {
+        Room room1 = new Room(true, false, 1, "Single", 100, 1);
+        Room room2 = new Room(true, false, 2, "Double", 200, 2);
+        Room room3 = new Room(true, false, 3, "Triple", 300, 3);
+        Address address1 = new Address();
+        Address address2 = new Address();
+        Address address3 = new Address();
+        Address address4 = new Address();
+        Address address5 = new Address();
+        Address address6 = new Address();
+        Staff staff1 = new Staff(1, "Ayush", 19, 'M', "9876543210", address1, "Staff", "Manager", "10000", 123, "gg",
+                "ayush");
+        Staff staff2 = new Staff(2, "Rohit", 20, 'M', "9876543211", address2, "Staff", "Manager", "10000", 123, "gg",
+                "rohit");
+        Staff staff3 = new Staff(3, "Raj", 21, 'M', "9876543212", address3, "Staff", "Manager", "10000", 123, "gg",
+                "raj");
+        Vector<Integer> roomNumVect1 = new Vector<>();
+        Vector<Integer> roomNumVect2 = new Vector<>();
+        Vector<Integer> roomNumVect3 = new Vector<>();
+        roomNumVect1.add(1);
+        roomNumVect1.add(2);
+        roomNumVect1.add(3);
+        roomNumVect2.add(4);
+        roomNumVect2.add(5);
+        roomNumVect2.add(6);
+        roomNumVect3.add(7);
+        roomNumVect3.add(8);
+        roomNumVect3.add(9);
+        Guest guest1 = new Guest(1, "Ayush", 19, 'M', "9876543210", address4, "Student", "1234567890123", roomNumVect1);
+        Guest guest2 = new Guest(2, "Rohit", 20, 'M', "9876543211", address5, "Student", "1234567890123", roomNumVect2);
+        Guest guest3 = new Guest(3, "Raj", 21, 'M', "9876543212", address6, "Student", "1234567890123", roomNumVect3);
+        Hotel.roomsList.put(1, room1);
+        Hotel.roomsList.put(2, room2);
+        Hotel.roomsList.put(3, room3);
+        Hotel.staffList.put(1, staff1);
+        Hotel.staffList.put(2, staff2);
+        Hotel.staffList.put(3, staff3);
+        Hotel.guestsList.put(1, guest1);
+        Hotel.guestsList.put(2, guest2);
+        Hotel.guestsList.put(3, guest3);
+        writeToCSV();
+        Hotel.roomsList.clear();
+        Hotel.staffList.clear();
+        Hotel.guestsList.clear();
+        readFromCSV();
+        Hotel.printRoomDetails();
+        Hotel.printStaffDetails();
+        Hotel.printGuestDetails();
+        return;
+    }
+
 }

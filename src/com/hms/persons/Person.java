@@ -7,7 +7,7 @@ abstract class Person {
     protected Integer id;
     protected String name;
     protected Integer age;
-    protected char gender;
+    protected Character gender;
     protected String mobNumber;
     protected com.hms.persons.Address add;
     protected String cat;
@@ -17,7 +17,7 @@ abstract class Person {
     }
     // add contructor
 
-    public Person(Integer id, String name, Integer age, char gender, String mobNumber, com.hms.persons.Address add,
+    public Person(Integer id, String name, Integer age, Character gender, String mobNumber, com.hms.persons.Address add,
             String cat) {
         this.id = id;
         this.name = name;
@@ -80,7 +80,6 @@ abstract class Person {
     public void printDetails() {
         if (id == -1)
             return;
-        System.out.print("\nDetails:\n");
         System.out.print("ID              : " + id + "\n");
         System.out.print("Name            : " + name + "\n");
         System.out.print("Gender          : " + gender + "\n");
@@ -125,7 +124,7 @@ abstract class Person {
     public String getName(){
         return name;
     }
-    public char getGender(){
+    public Character getGender(){
         return gender;
     }
     public String getMobileNumber(){

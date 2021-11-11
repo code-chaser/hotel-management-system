@@ -4,14 +4,14 @@ import java.util.*;
 import java.io.*;
 
 public class Address {
-    private String line1, line2;
-    private String city;
-    private String state;
-    private String pinCode;
-    private String country;
+    protected String line1, line2;
+    protected String city;
+    protected String state;
+    protected String pinCode;
+    protected String country;
 
     public Address() {
-        line1 = line2 = city = state = pinCode = country = "demo address";
+        line1 = line2 = city = state = pinCode = country = "";
     }
 
     public void takeInput() {
@@ -48,16 +48,28 @@ public class Address {
         return;
     }
 
-    public void strToAdd(String add) {
-        String[] arr = add.split("`");
+    public synchronized void strToAdd(String add) {
+        String[] arr = new String[6];
+        String temp = "";
+        Integer count = 0;
+        for (int i = 0; i < add.length(); i++) {
+            if (add.charAt(i) == '`') {
+                arr[count] = temp;
+                temp = "";
+                count++;
+            } else
+                temp += add.charAt(i);
+        }
         line1 = arr[0];
-        for (Integer i = 0; i < line1.length(); i++)
-            if (line1.charAt(i) == '^')
-                line1 = line1.substring(0, i) + ',' + line1.substring(i + 1);
+        if (line1 != null)
+            for (Integer i = 0; i < line1.length(); i++)
+                if (line1.charAt(i) == '^')
+                    line1 = line1.substring(0, i) + ',' + line1.substring(i + 1);
         line2 = arr[1];
-        for (Integer i = 0; i < line2.length(); i++)
-            if (line2.charAt(i) == '^')
-                line2 = line2.substring(0, i) + ',' + line2.substring(i + 1);
+        if (line2 != null)
+            for (Integer i = 0; i < line2.length(); i++)
+                if (line2.charAt(i) == '^')
+                    line2 = line2.substring(0, i) + ',' + line2.substring(i + 1);
         city = arr[2];
         state = arr[3];
         pinCode = arr[4];
@@ -65,7 +77,7 @@ public class Address {
         return;
     }
 
-    public String addToStr() {
+    public synchronized String addToStr() {
         String add = "";
         add += line1 + '`';
         add += line2 + '`';

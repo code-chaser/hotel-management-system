@@ -26,7 +26,7 @@ public class Staff extends Person {
         this.assign(s);
     }
 
-    public Staff(Integer id, String name, Integer age, char gender, String mobNumber, com.hms.persons.Address add, String cat,
+    public Staff(Integer id, String name, Integer age, Character gender, String mobNumber, com.hms.persons.Address add, String cat,
             String type, String salary, Integer workingDays, String loginId, String password) {
         super(id, name, age, gender, mobNumber, add, cat);
         this.type = type;
@@ -101,7 +101,6 @@ public class Staff extends Person {
     public void printDetails() {
         if (id == -1)
             return;
-
         System.out.println("\nStaff Details:");
         super.printDetails();
         System.out.print("Type            :" + type + "\n");

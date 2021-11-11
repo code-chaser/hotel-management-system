@@ -23,7 +23,7 @@ public class Guest extends Person {
         this.assign(g);
     }
 
-    public Guest(Integer id, String name, Integer age, char gender, String mobNumber, com.hms.persons.Address add, String cat, String aadharNumber, Vector<Integer> roomNumbers) {
+    public Guest(Integer id, String name, Integer age, Character gender, String mobNumber, com.hms.persons.Address add, String cat, String aadharNumber, Vector<Integer> roomNumbers) {
         super(id, name, age, gender, mobNumber, add, cat);
         this.aadharNumber = aadharNumber;
         this.roomNumbers = roomNumbers;
