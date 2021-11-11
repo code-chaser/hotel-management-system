@@ -26,8 +26,8 @@ public class Staff extends Person {
         this.assign(s);
     }
 
-    public Staff(Integer id, String name, Integer age, Character gender, String mobNumber, com.hms.persons.Address add, String cat,
-            String type, String salary, Integer workingDays, String loginId, String password) {
+    public Staff(Integer id, String name, Integer age, Character gender, String mobNumber, com.hms.persons.Address add,
+            String cat, String type, String salary, Integer workingDays, String loginId, String password) {
         super(id, name, age, gender, mobNumber, add, cat);
         this.type = type;
         this.salary = salary;
@@ -72,7 +72,7 @@ public class Staff extends Person {
         this.workingDays = workingDays;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
@@ -101,6 +101,7 @@ public class Staff extends Person {
         workingDays = 0;
         cat = "Staff";
     }
+
     public void addPerson(Integer minAge, Integer maxAge) {
         super.addPerson(18, 60);
         if (this.id == -2)
@@ -128,7 +129,7 @@ public class Staff extends Person {
         if (com.hms.Hotel.staffList.entrySet().size() > 0) {
             this.id = com.hms.Hotel.staffList.lastEntry().getKey() + 1;
             com.hms.Hotel.staffList.put(this.id, new Staff(this));
-        } else{
+        } else {
             this.id = 1;
             com.hms.Hotel.staffList.put(this.id, new Staff(this));
         }
@@ -136,8 +137,8 @@ public class Staff extends Person {
     }
 
     public Boolean login(String loginId, String password) {
-        for(var entry: com.hms.Hotel.staffList.entrySet()) {
-            if(entry.getValue().loginId.equals(loginId) && entry.getValue().password.equals(password)) {
+        for (var entry : com.hms.Hotel.staffList.entrySet()) {
+            if (entry.getValue().loginId.equals(loginId) && entry.getValue().password.equals(password)) {
                 this.assign(entry.getValue());
                 return true;
             }

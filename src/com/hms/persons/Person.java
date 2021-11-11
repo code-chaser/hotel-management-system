@@ -115,6 +115,10 @@ abstract class Person {
         return;
     }
 
+    public void setMobileNumber(String mobNumber) {
+        this.mobNumber = mobNumber;
+    }
+
     public Integer getId() {
         return id;
     }

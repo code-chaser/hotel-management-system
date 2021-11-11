@@ -5,6 +5,7 @@ import java.util.*;
 import com.hms.fileHandling.FileHandling;
 import com.hms.Hotel;
 import com.hms.rooms.Room;
+import com.hms.persons.Address;
 import com.hms.persons.Guest;
 import com.hms.persons.Staff;
 
@@ -35,8 +36,6 @@ public class Main {
         // ---------------------------
 
         // main(); Body
-        Staff s = new Staff();
-        s.addPerson(10, 200);
         Scanner cin = new Scanner(System.in);
         boolean done = false;
         while (!done) {
@@ -82,7 +81,109 @@ public class Main {
                     System.out.print("\n\n---------------------------\n");
                     staff.printDetails();
                     System.out.print("\n---------------------------\n");
-                    // staff menu
+                    if (staff.getType() == "ADMIN") {
+                        System.out.println("<Insert options here>");
+                        int ch;
+                        ch = Integer.parseInt(cin.next());
+                        switch (ch) {
+                        case 1: {
+                            System.out.println("All staff details: ");
+                            Hotel.printStaffDetails();
+                            break;
+                        }
+                        case 2: {
+                            Staff temp_staff = new Staff();
+                            temp_staff.addPerson(0, 200);
+                            break;
+                        }
+                        case 3: {
+                            Staff temp_staff = new Staff();
+                            temp_staff.getDetails();
+                            if (temp_staff.getId().equals(-1))
+                                break;
+                            System.out.println("kya change karoge? \n type \n salary \n password");
+                            int ch1 = Integer.parseInt(cin.next());
+                            switch (ch1) {
+                            case 2: {
+                                System.out.print("Enter new salary: ");
+                                String salary = cin.next();
+                                temp_staff.setSalary(salary);
+                                break;
+                            }
+                            case 3: {
+                                System.out.print("Enter new password: ");
+                                String password1 = cin.next();
+                                temp_staff.setPassword(password1);
+                                break;
+                            }
+                            case 1: {
+                                System.out.print("Enter new type: ");
+                                String name = cin.next();
+                                temp_staff.setType(name);
+                                break;
+                            }
+                            default: {
+                                System.out.println("Invalid Input!");
+                                break;
+                            }
+                            }
+                            break;
+                        }
+                        case 4: {
+                            Staff temp_staff = new Staff();
+                            temp_staff.getDetails();
+                            if (temp_staff.getId().equals(-1))
+                                break;
+                            Hotel.staffList.remove(temp_staff.getId());
+                        }
+                        case 5: {
+                            System.out.println("See all guest details");
+                            Hotel.printGuestDetails();
+                        }
+                        }
+                    } else if (staff.getType().equals("Receptionist") || staff.getType().equals("Manager")) {
+                        int ch1 = Integer.parseInt(cin.next());
+                        switch (ch1) {
+                        case 1: {
+                            System.out.println("Edit own details");
+                            int ch = Integer.parseInt(cin.next());
+                            switch (ch) {
+                            case 1: {
+                                System.out.println("Enter new phone number: ");
+                                String phoneno = cin.next();
+                                staff.setMobileNumber(phoneno);
+                                break;
+                            }
+                            case 2: {
+                                System.out.println("Enter new password: ");
+                                String password1 = cin.next();
+                                staff.setPassword(password1);
+                            }
+                            }
+                            break;
+                        }
+                        case 2: {
+                            Hotel.printGuestDetails();
+                        }
+                        }
+                    } else {
+                        System.out.println("Edit own details");
+                        int ch = Integer.parseInt(cin.next());
+                        switch (ch) {
+                        case 1: {
+                            System.out.println("Enter new phone number: ");
+                            String phoneno = cin.next();
+                            staff.setMobileNumber(phoneno);
+                            break;
+                        }
+                        case 2: {
+                            System.out.println("Enter new password: ");
+                            String password1 = cin.next();
+                            staff.setPassword(password1);
+                        }
+                        }
+                        break;
+                    }
                 } else {
                     System.out.print("Login failed!\nInvalid username or password.");
                 }
