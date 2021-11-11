@@ -50,7 +50,8 @@ public class Main {
             System.out.print("\n\n[04] Exit");
             System.out.print("\n\n---------------------------");
             System.out.print("\n\nEnter your choice:\n");
-            inp = cin.nextLine();
+            inp = cin.next();
+            inp += cin.nextLine();
             int choice = Integer.parseInt(inp);
             System.out.print("\n---------------------------");
             switch (choice) {
