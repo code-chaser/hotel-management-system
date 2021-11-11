@@ -41,6 +41,7 @@ public class Main {
         boolean done = false;
         while (!done) {
             String inp = "";
+            Integer choice;
             System.out.print("\n\n---------------------------");
             System.out.print("\n\n- HOTEL MANAGEMENT SYSTEM -");
             System.out.print("\n\n---------------------------\n");
@@ -53,7 +54,7 @@ public class Main {
             inp = cin.next();
             inp += cin.nextLine();
             try {
-                int choice = Integer.parseInt(inp);
+                choice = Integer.parseInt(inp);
             } catch (Exception e) {
                 System.out.print("\n\nInvalid Input!\n");
                 continue;
