@@ -1,7 +1,6 @@
 package com.hms;
 
 import java.util.*;
-
 import com.hms.fileHandling.FileHandling;
 import com.hms.Hotel;
 import com.hms.rooms.Room;
@@ -77,19 +76,21 @@ public class Main {
                 System.out.print("\n---------------------------\n");
                 Staff staff = new Staff();
                 if (staff.login(username, password)) {
-                    System.out.print("\n-------- LOGGED IN --------");
+                    System.out.print("\n---- Logged In as " + staff.getType() + " ----\n");
                     System.out.print("\n\n---------------------------\n");
                     staff.printDetails();
                     System.out.print("\n---------------------------\n");
-                    if (staff.getType().equals("ADMIN") ) {
+                    if (staff.getType().equals("ADMIN")) {
                         System.out.println("[01] Show all Staff Details");
                         System.out.println("[02] Add a new Staff Member");
                         System.out.println("[03] Change Staff Details");
                         System.out.println("[04] Remove a Staff Member");
                         System.out.println("[05] Show all Guest Details");
+                        System.out.print("\n---------------------------\n");
                         System.out.print("Your Input: ");
                         int ch;
                         ch = Integer.parseInt(cin.next());
+                        System.out.print("\n---------------------------\n");
                         switch (ch) {
                         case 1: {
                             System.out.println("All staff details: ");
@@ -107,13 +108,16 @@ public class Main {
                             if (temp_staff.getId().equals(-1))
                                 break;
                             // System.out.println("kya change karoge? \n type \n salary \n password");
+                            System.out.print("\n---------------------------\n");
                             System.out.print("\nEnter the field you want to change: ");
                             System.out.println("[01] Staff Type");
                             System.out.println("[02] Salary");
                             System.out.println("[03] Password");
+                            System.out.print("\n---------------------------\n");
                             System.out.print("Your Input: ");
 
                             int ch1 = Integer.parseInt(cin.next());
+                            System.out.print("\n---------------------------\n");
                             switch (ch1) {
                             case 2: {
                                 System.out.print("Enter new salary: ");
@@ -221,11 +225,11 @@ public class Main {
                 System.out.println("Room Number: ");
                 int roomNum = cin.nextInt();
                 if (!Hotel.roomsList.containsKey(roomNum)) {
-                    System.out.println("N/A");
+                    System.out.println("Room not Found");
                     break;
                 }
                 if (!Hotel.roomsList.get(roomNum).isAvailable()) {
-                    System.out.println("Room N/A");
+                    System.out.println("Room Unavailable");
                     break;
                 }
                 Guest guest = new Guest();

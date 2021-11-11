@@ -237,11 +237,11 @@ public class Room {
         return bill;
     }
 
-    public String printRoomDetails(){
+    public String printRoomDetails() {
         String roomDetails;
-        roomDetails = "Room Number: " + roomNumber + "\n" + "Room Size: " + roomSize + "\n" + "Room Type: " + type + "\n"
-                + "Room Description: " + desc + "\n" + "Room Capacity: " + capacity + "\n" + "Room Availability: " + available + "\n"
-                + "Room Occupancy: " + occupied;
+        roomDetails = "Room Number: " + roomNumber + "\n" + "Room Size: " + roomSize + "\n" + "Room Type: " + type
+                + "\n" + "Room Description: " + desc + "\n" + "Room Capacity: " + capacity + "\n"
+                + "Room Availability: " + available + "\n" + "Room Occupancy: " + occupied;
         return roomDetails;
     }
 }

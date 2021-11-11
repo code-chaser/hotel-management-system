@@ -23,7 +23,8 @@ public class Guest extends Person {
         this.assign(g);
     }
 
-    public Guest(Integer id, String name, Integer age, Character gender, String mobNumber, com.hms.persons.Address add, String cat, String aadharNumber, Vector<Integer> roomNumbers) {
+    public Guest(Integer id, String name, Integer age, Character gender, String mobNumber, com.hms.persons.Address add,
+            String cat, String aadharNumber, Vector<Integer> roomNumbers) {
         super(id, name, age, gender, mobNumber, add, cat);
         this.aadharNumber = aadharNumber;
         this.roomNumbers = roomNumbers;
@@ -32,7 +33,7 @@ public class Guest extends Person {
     public void setID(int id) {
         this.id = id;
     }
-    
+
     public String getAadharNumber() {
         return aadharNumber;
     }
@@ -61,7 +62,7 @@ public class Guest extends Person {
                 break;
             }
         }
-        if(index != Integer.MAX_VALUE)
+        if (index != Integer.MAX_VALUE)
             roomNumbers.remove(index);
     }
 
@@ -74,7 +75,8 @@ public class Guest extends Person {
 
     public void addPerson(int minAge, int maxAge) {
         super.addPerson(0, 200);
-        if(this.id == -2) return;
+        if (this.id == -2)
+            return;
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter aadhar number:\n");
@@ -82,11 +84,10 @@ public class Guest extends Person {
         inp += cin.nextLine();
         aadharNumber = inp;
         cat = "Guest";
-        if (com.hms.Hotel.guestsList.entrySet().size() > 0){
+        if (com.hms.Hotel.guestsList.entrySet().size() > 0) {
             this.id = com.hms.Hotel.guestsList.lastEntry().getKey() + 1;
             com.hms.Hotel.guestsList.put(this.id, new Guest(this));
-        }
-        else{
+        } else {
             this.id = 1;
             com.hms.Hotel.guestsList.put(1, new Guest(this));
         }
@@ -95,7 +96,8 @@ public class Guest extends Person {
 
     public void inputDetails() {
         super.addPerson(0, 200);
-        if(this.id == -2) return;
+        if (this.id == -2)
+            return;
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter aadhar number:\n");
@@ -104,6 +106,7 @@ public class Guest extends Person {
         aadharNumber = inp;
         cat = "Guest";
     }
+
     public void printDetails() {
         if (id == -1)
             return;
