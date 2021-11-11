@@ -19,9 +19,18 @@ class ReaderThread implements Runnable {
 
 public class Main {
     public static void main(String[] args) {
-        new Thread(new ReaderThread()).start();
+        // creating a thread to read from CSV files;
+        ReaderThread readerThread = new ReaderThread();
+        Thread thread = new Thread(readerThread);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // ---------------------------
 
-        //Main Body
+        // main(); Body
         
         FileHandling.writeToCSV();
     }
