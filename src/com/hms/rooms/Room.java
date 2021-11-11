@@ -15,6 +15,7 @@ public class Room {
     protected Integer capacity;
     protected String desc;
     protected Integer roomSize;
+    protected String type = "Suite";
     protected boolean available;
     protected boolean occupied;
 
@@ -35,6 +36,10 @@ public class Room {
         this.desc = "";
         this.roomSize = 14;
         this.roomNumber = -1;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public boolean isAvailable() {
@@ -106,7 +111,7 @@ public class Room {
 
             case 1:
                 for (var entry : Hotel.roomsList.entrySet()) {
-                    if (entry.getValue().equals("Classic")) {
+                    if (entry.getValue().getType().equals("Classic")) {
                         System.out.println("Classic Room is available.");
                         done = true;
                         break;
@@ -133,7 +138,7 @@ public class Room {
 
             case 2:
                 for (var entry : Hotel.roomsList.entrySet()) {
-                    if (entry.getValue().equals("Deluxe")) {
+                    if (entry.getValue().getType().equals("Deluxe")) {
                         System.out.println("Deluxe Room is available.");
                         done = true;
                         break;
@@ -160,7 +165,7 @@ public class Room {
                 break;
             case 3:
                 for (var entry : Hotel.roomsList.entrySet()) {
-                    if (entry.getValue().equals("Suite")) {
+                    if (entry.getValue().getType().equals("Suite")) {
                         System.out.println("Suite is available.");
                         done = true;
                         break;
@@ -230,5 +235,13 @@ public class Room {
         bill = "Room Number: " + roomNumber + "\n" + "Room Size: " + roomSize + "\n" + "Base Cost: " + baseCost + "\n"
                 + "Tax: " + tax + "\n" + "Total Cost: " + totalCost;
         return bill;
+    }
+
+    public String printRoomDetails(){
+        String roomDetails;
+        roomDetails = "Room Number: " + roomNumber + "\n" + "Room Size: " + roomSize + "\n" + "Room Type: " + type + "\n"
+                + "Room Description: " + desc + "\n" + "Room Capacity: " + capacity + "\n" + "Room Availability: " + available + "\n"
+                + "Room Occupancy: " + occupied;
+        return roomDetails;
     }
 }
