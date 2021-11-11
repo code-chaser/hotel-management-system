@@ -47,6 +47,7 @@ abstract class Person {
                 else if (age < minAge) {
                     System.out.print("\nSorry, person should be atleast " + minAge
                             + " years old to be registered as a new " + cat + ".\n");
+                    this.id = -2;
                     return;
                 } else if (age > maxAge) {
                     System.out.print(

@@ -83,15 +83,21 @@ public class Staff extends Person {
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter type of staff:\n");
-        inp = cin.nextLine();
+        inp = cin.next();
+        inp += cin.nextLine();
         type = inp;
         System.out.print("\nEnter salary of staff:\n");
-        inp = cin.nextLine();
+        inp = cin.next();
+        inp += cin.nextLine();
         salary = inp;
         System.out.println("\nGive staff a login id:\n");
-        loginId = cin.nextLine();
+        inp = cin.next();
+        inp += cin.nextLine();
+        loginId = inp;
         System.out.println("\nGive staff a password:\n");
-        password = cin.nextLine();
+        inp = cin.next();
+        inp += cin.nextLine();
+        password = inp;
         workingDays = 0;
         cat = "Staff";
         if (com.hms.Hotel.staffList.entrySet().size() > 0) {
