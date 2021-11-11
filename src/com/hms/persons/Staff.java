@@ -83,19 +83,41 @@ public class Staff extends Person {
         Scanner cin = new Scanner(System.in);
         String inp;
         System.out.print("\nEnter type of staff:\n");
-        inp = cin.nextLine();
+        inp = cin.next();
+        inp += cin.nextLine();
         type = inp;
         System.out.print("\nEnter salary of staff:\n");
-        inp = cin.nextLine();
+        inp = cin.next();
+        inp += cin.nextLine();
         salary = inp;
+        System.out.println("\nGive staff a login id:\n");
+        inp = cin.next();
+        inp += cin.nextLine();
+        loginId = inp;
+        System.out.println("\nGive staff a password:\n");
+        inp = cin.next();
+        inp += cin.nextLine();
+        password = inp;
         workingDays = 0;
         cat = "Staff";
         if (com.hms.Hotel.staffList.entrySet().size() > 0) {
             this.id = com.hms.Hotel.staffList.lastEntry().getKey() + 1;
             com.hms.Hotel.staffList.put(this.id, new Staff(this));
-        } else
-            com.hms.Hotel.staffList.put(1, new Staff(this));
+        } else{
+            this.id = 1;
+            com.hms.Hotel.staffList.put(this.id, new Staff(this));
+        }
         return;
+    }
+
+    public Boolean login(String loginId, String password) {
+        for(var entry: com.hms.Hotel.staffList.entrySet()) {
+            if(entry.getValue().loginId.equals(loginId) && entry.getValue().password.equals(password)) {
+                this.assign(entry.getValue());
+                return true;
+            }
+        }
+        return false;
     }
 
     public void printDetails() {

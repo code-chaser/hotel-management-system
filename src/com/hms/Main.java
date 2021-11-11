@@ -35,10 +35,13 @@ public class Main {
         // ---------------------------
 
         // main(); Body
+        Staff s = new Staff();
+        s.addPerson(10, 200);
         Scanner cin = new Scanner(System.in);
         boolean done = false;
         while (!done) {
             String inp = "";
+            Integer choice;
             System.out.print("\n\n---------------------------");
             System.out.print("\n\n- HOTEL MANAGEMENT SYSTEM -");
             System.out.print("\n\n---------------------------\n");
@@ -48,8 +51,14 @@ public class Main {
             System.out.print("\n\n[04] Exit");
             System.out.print("\n\n---------------------------");
             System.out.print("\n\nEnter your choice:\n");
-            inp = cin.nextLine();
-            int choice = Integer.parseInt(inp);
+            inp = cin.next();
+            inp += cin.nextLine();
+            try {
+                choice = Integer.parseInt(inp);
+            } catch (Exception e) {
+                System.out.print("\n\nInvalid Input!\n");
+                continue;
+            }
             System.out.print("\n---------------------------");
             switch (choice) {
             case 1:
@@ -71,7 +80,7 @@ public class Main {
                     System.out.print("\n\n---------------------------\n");
                     staff.printDetails();
                     System.out.print("\n---------------------------\n");
-                    //staff menu
+                    // staff menu
                 } else {
                     System.out.print("Login failed!\nInvalid username or password.");
                 }
@@ -100,4 +109,3 @@ public class Main {
         return;
     }
 }
-}}
