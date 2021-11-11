@@ -1,7 +1,6 @@
 package com.hms;
 
 import java.util.*;
-
 import com.hms.fileHandling.FileHandling;
 import com.hms.Hotel;
 import com.hms.rooms.Room;
@@ -77,19 +76,21 @@ public class Main {
                 System.out.print("\n---------------------------\n");
                 Staff staff = new Staff();
                 if (staff.login(username, password)) {
-                    System.out.print("\n-------- LOGGED IN --------");
+                    System.out.print("\n---- Logged In as " + staff.getType() + " ----\n");
                     System.out.print("\n\n---------------------------\n");
                     staff.printDetails();
                     System.out.print("\n---------------------------\n");
-                    if (staff.getType().equals("ADMIN") ) {
+                    if (staff.getType().equals("ADMIN")) {
                         System.out.println("[01] Show all Staff Details");
                         System.out.println("[02] Add a new Staff Member");
                         System.out.println("[03] Change Staff Details");
                         System.out.println("[04] Remove a Staff Member");
                         System.out.println("[05] Show all Guest Details");
+                        System.out.print("\n---------------------------\n");
                         System.out.print("Your Input: ");
                         int ch;
                         ch = Integer.parseInt(cin.next());
+                        System.out.print("\n---------------------------\n");
                         switch (ch) {
                         case 1: {
                             System.out.println("All staff details: ");
@@ -107,13 +108,16 @@ public class Main {
                             if (temp_staff.getId().equals(-1))
                                 break;
                             // System.out.println("kya change karoge? \n type \n salary \n password");
+                            System.out.print("\n---------------------------\n");
                             System.out.print("\nEnter the field you want to change: ");
                             System.out.println("[01] Staff Type");
                             System.out.println("[02] Salary");
                             System.out.println("[03] Password");
+                            System.out.print("\n---------------------------\n");
                             System.out.print("Your Input: ");
 
                             int ch1 = Integer.parseInt(cin.next());
+                            System.out.print("\n---------------------------\n");
                             switch (ch1) {
                             case 2: {
                                 System.out.print("Enter new salary: ");
@@ -156,10 +160,21 @@ public class Main {
                         }
                         }
                     } else if (staff.getType().equals("Receptionist") || staff.getType().equals("Manager")) {
+                        System.out.print("\n---------------------------\n");
+                        System.out.println("[01] Edit Own Details ");
+                        System.out.println("[02] See All Guest Details ");
+                        System.out.print("\n---------------------------\n");
+                        System.out.print("Your Input: ");
+
                         int ch1 = Integer.parseInt(cin.next());
                         switch (ch1) {
                         case 1: {
-                            System.out.println("Edit own details");
+                            System.out.print("\n---------------------------\n");
+                            System.out.println("[01] Change Phone Number ");
+                            System.out.println("[02] Change Password ");
+                            System.out.print("\n---------------------------\n");
+                            System.out.print("[Your Input:  ");
+
                             int ch = Integer.parseInt(cin.next());
                             switch (ch) {
                             case 1: {
@@ -181,10 +196,16 @@ public class Main {
                         }
                         case 2: {
                             Hotel.printGuestDetails();
+                            break;
                         }
                         }
                     } else {
-                        System.out.println("Edit own details");
+                        System.out.print("\n---------------------------\n");
+                        System.out.println("----EDIT OWN DETAILS----");
+                        System.out.println("[01] Change Phone Number ");
+                        System.out.println("[02] Change Password ");
+                        System.out.print("\n---------------------------\n");
+                        System.out.print("[Your Input:  ");
                         int ch = Integer.parseInt(cin.next());
                         switch (ch) {
                         case 1: {
@@ -216,16 +237,16 @@ public class Main {
                 break;
             case 3:
                 // Book a Room
-                System.out.print("\n\n---------------------------");
+                System.out.print("\n\n---------------------------\n");
                 Hotel.printRoomDetails();
                 System.out.println("Room Number: ");
                 int roomNum = cin.nextInt();
                 if (!Hotel.roomsList.containsKey(roomNum)) {
-                    System.out.println("N/A");
+                    System.out.println("Room not Found");
                     break;
                 }
                 if (!Hotel.roomsList.get(roomNum).isAvailable()) {
-                    System.out.println("Room N/A");
+                    System.out.println("Room Unavailable");
                     break;
                 }
                 Guest guest = new Guest();
@@ -271,7 +292,7 @@ public class Main {
                         inp += cin.nextLine();
                         int roomNum2 = Integer.parseInt(inp);
                         if ((!Hotel.roomsList.containsKey(roomNum2))) {
-                            System.out.println("N/A");
+                            System.out.println("Room not Found");
                             break;
                         }
                         if (Hotel.roomsList.get(roomNum2).isAvailable()) {
@@ -290,6 +311,10 @@ public class Main {
                             Hotel.guestsList.remove(entry.getKey());
                         }
                         Hotel.roomsList.get(roomNum2).generateBill();
+                        break;
+                    }
+                    else {
+                        System.out.println("Invalid Input");
                         break;
                     }
                 }
