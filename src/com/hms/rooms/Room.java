@@ -2,6 +2,7 @@ package com.hms.rooms;
 
 import java.util.*;
 import java.io.*;
+import com.hms.*;
 
 public class Room {
     public static void main(String[] args) {
@@ -81,6 +82,135 @@ public class Room {
 	public void setRoomNumber(Integer roomNumber) {
 		this.roomNumber = roomNumber;
 	}
+
+    public void getDetails() {
+        Scanner cin = new Scanner(System.in);
+        boolean done = false;
+        while (!done) 
+        {
+            int opt = 0;
+            String inp;
+            System.out.print(
+                    "\nPlease select what kind of room are you looking for: \n1. Classic \n2. Deluxe \n3.Suite ");
+            inp = cin.next();
+            inp += cin.nextLine();
+            opt = Integer.parseInt(inp);
+            while (opt < 1 || opt > 3) 
+            {
+                System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                inp = cin.next();
+                inp += cin.nextLine();
+                opt = Integer.parseInt(inp);
+            }
+            switch (opt) 
+            {
+
+                case 1:
+                for(var entry: Hotel.roomsList.entrySet())
+                    {
+                        if(entry.getValue().equals("Classic"))
+                        {
+                            System.out.println("Classic Room is available.");
+                            done = true;
+                            break;
+
+                        }
+                
+                            
+                        else {
+                            System.out.print("\nSorry! Currently there is no Classic room avialble.\n");
+                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                            while (!inp.equals("Y") && !inp.equals("N"))
+                            {
+                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                                inp = cin.next();
+                                inp += cin.nextLine();
+                            }
+                            if (inp.equals("N"))
+                            {
+                                done = true;
+                                break;
+                            }
+                        }
+                    
+                    }
+                
+
+                case 2:
+                for(var entry: Hotel.roomsList.entrySet())
+                    {
+                        if(entry.getValue().equals("Deluxe"))
+                        {
+                            System.out.println("Deluxe Room is available.");
+                            done = true;
+                            break;
+
+                        }
+                
+                            
+                        else {
+                            System.out.print("\nSorry! Currently there is no Deluxe room avialble.\n");
+                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                            while (!inp.equals("Y") && !inp.equals("N"))
+                            {
+                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                                inp = cin.next();
+                                inp += cin.nextLine();
+                            }
+                            if (inp.equals("N"))
+                            {
+                                done = true;
+                                break;
+                            }
+                        }
+                    
+                    }
+                break;
+                case 3:
+                for(var entry: Hotel.roomsList.entrySet())
+                    {
+                        if(entry.getValue().equals("Suite"))
+                        {
+                            System.out.println("Suite is available.");
+                            done = true;
+                            break;
+
+                        }
+                
+                            
+                        else {
+                            System.out.print("\nSorry! Currently there is no Suites avialble.\n");
+                            System.out.print("\nTry again? (Y = Yes | N = No)\n");
+                            inp = cin.next();
+                            inp += cin.nextLine();
+                            while (!inp.equals("Y") && !inp.equals("N"))
+                            {
+                                System.out.print("\nInvalid Choice!\nEnter again:\n ");
+                                inp = cin.next();
+                                inp += cin.nextLine();
+                            }
+                            if (inp.equals("N"))
+                            {
+                                done = true;
+                                break;
+                            }
+                        }
+                    
+                    }
+                break;
+
+                default:
+                 System.out.println("Invalid Choice");
+                 break;
+
+            }
+        }
+}
+
 
 	public void book() {
 		if (this.isAvailable()) {
