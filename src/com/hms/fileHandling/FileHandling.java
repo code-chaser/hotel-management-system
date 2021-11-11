@@ -239,26 +239,29 @@ public class FileHandling {
         ThreadForRoomsRead threadForRoomsRead = new ThreadForRoomsRead();
         Thread t1 = new Thread(threadForRoomsRead);
         t1.start();
-        try {
-            t1.join();
-        } catch (InterruptedException e) {
-            System.out.println(e);
-        }
 
         // Filling staffList
         ThreadForStaffRead threadForStaffRead = new ThreadForStaffRead();
         Thread t2 = new Thread(threadForStaffRead);
         t2.start();
-        try {
-            t2.join();
-        } catch (InterruptedException e) {
-            System.out.println(e);
-        }
 
         // Filling guestsList
         ThreadForGuestsRead threadForGuestsRead = new ThreadForGuestsRead();
         Thread t3 = new Thread(threadForGuestsRead);
         t3.start();
+
+        // Now joining threads to make sure that all the data from CSV files are loaded
+        // into the Maps before returning back the control;
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+        try {
+            t2.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
         try {
             t3.join();
         } catch (InterruptedException e) {
@@ -276,26 +279,29 @@ public class FileHandling {
         ThreadForRoomsWrite threadForRoomsWrite = new ThreadForRoomsWrite();
         Thread t1 = new Thread(threadForRoomsWrite);
         t1.start();
-        try {
-            t1.join();
-        } catch (InterruptedException e) {
-            System.out.println(e);
-        }
 
         // Filling staff.csv
         ThreadForStaffWrite threadForStaffWrite = new ThreadForStaffWrite();
         Thread t2 = new Thread(threadForStaffWrite);
         t2.start();
-        try {
-            t2.join();
-        } catch (InterruptedException e) {
-            System.out.println(e);
-        }
 
         // Filling guests.csv
         ThreadForGuestsWrite threadForGuestsWrite = new ThreadForGuestsWrite();
         Thread t3 = new Thread(threadForGuestsWrite);
         t3.start();
+
+        // Now joining threads to make sure that all data is written into CSV files
+        // before returning back the control;
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+        try {
+            t2.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
         try {
             t3.join();
         } catch (InterruptedException e) {
