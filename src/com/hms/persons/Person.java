@@ -115,26 +115,31 @@ abstract class Person {
         return;
     }
 
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
 
-    public Integer getAge(){
+    public Integer getAge() {
         return age;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public Character getGender(){
+
+    public Character getGender() {
         return gender;
     }
-    public String getMobileNumber(){
+
+    public String getMobileNumber() {
         return mobNumber;
     }
-    public Address getAddress(){
+
+    public Address getAddress() {
         return add;
     }
-    public String getCategory(){
+
+    public String getCategory() {
         return cat;
     }
 
