@@ -1,0 +1,4 @@
+/.idea
+**/*.class
+.DS_Store
+.git

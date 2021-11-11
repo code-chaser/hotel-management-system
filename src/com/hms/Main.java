@@ -60,6 +60,7 @@ public class Main {
                 continue;
             }
             System.out.print("\n---------------------------");
+
             switch (choice) {
             case 1:
                 System.out.print("\n\n---------- LOGIN ----------");
@@ -88,16 +89,39 @@ public class Main {
                 System.out.print("\n\n---------------------------");
                 break;
             case 2:
-                System.out.print("\n\n---------------------------");
+            // Room Details
+                System.out.println("\n\n---------------------------");
+                Hotel.printRoomDetails();
+                System.out.println("\n\n---------------------------");
+
                 break;
             case 3:
+            // Book a Room
                 System.out.print("\n\n---------------------------");
+                Hotel.printRoomDetails();
+                System.out.println("Room Number: ");
+                int roomNum = cin.nextInt();
+                if(!Hotel.roomsList.containsKey(roomNum)){
+                    System.out.println("N/A");
+                    break;
+                }
+                if(!Hotel.roomsList.get(roomNum).isAvailable()){
+                    System.out.println("Room N/A");
+                    break;
+                }
+                Guest guest = new Guest();
+                guest.addPerson(10, 100);
+                guest.addRoomNumber(roomNum);
+                Hotel.roomsList.get(roomNum).book();
                 break;
             case 4:
                 System.out.print("\n\nExiting...");
                 done = true;
                 System.out.print("\n\n---------------------------");
                 break;
+            case 5:
+                System.out.print("\n\n---------------------------");
+
             default:
                 System.out.print("\n\nInvalid choice!");
                 System.out.print("\n\n---------------------------");
@@ -108,4 +132,5 @@ public class Main {
         FileHandling.writeToCSV();
         return;
     }
+
 }
