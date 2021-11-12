@@ -10,7 +10,7 @@ public class Room {
     protected Integer capacity;
     protected String desc;
     protected Integer roomSize = 3;
-    // 1 : 
+    // 1 : Classic | 2 : Deluxe | 3 : Suite
     protected boolean available;
     protected boolean occupied;
 
@@ -182,7 +182,7 @@ public class Room {
         if (this.isAvailable()) {
             setAvailable(false);
         } else {
-            System.out.println("Room is not available");
+            System.out.println("Room is not available\n");
         }
         return;
     }
@@ -191,9 +191,9 @@ public class Room {
         if (!isAvailable() && !isOccupied()) {
             setOccupied(true);
         } else if (isAvailable()) {
-            System.out.println("Room is not booked");
+            System.out.println("Room is not booked\n");
         } else {
-            System.out.println("Room is already occupied");
+            System.out.println("Room is already occupied\n");
         }
         return;
     }
@@ -204,9 +204,18 @@ public class Room {
             setOccupied(false);
             System.out.println(generateBill());
         } else {
-            System.out.println("Room was not occupied");
+            System.out.println("Room was not occupied\n");
         }
         return;
+    }
+
+    public String printRoomDetails() {
+        String roomDetails;
+        roomDetails = "\nRoom Details:\nRoom Number     : " + roomNumber + "\n" + "Room Type       : ";
+        roomDetails += (roomSize == 1 ? "Classic" : (roomSize == 2 ? "Deluxe" : "Suite"));
+        roomDetails += "\n" + "Room Description: " + desc + "\n" + "Room Capacity    : " + capacity + "\n"
+                + "Room Availability: " + (available ? "Yes" : "No") + "\n";
+        return roomDetails;
     }
 
     public String generateBill() {
@@ -217,14 +226,5 @@ public class Room {
         bill += "Cost Details:\n";
         bill += "\n" + "Base Cost       : " + baseCost + "\n" + "Tax             : " + tax + "\n" + "Total Cost      : " + totalCost + "\n";
         return bill;
-    }
-
-    public String printRoomDetails() {
-        String roomDetails;
-        roomDetails = "\nRoom Details:\nRoom Number     : " + roomNumber + "\n" + "Room Type       : ";
-        roomDetails += (roomSize == 1 ? "Classic" : (roomSize == 2 ? "Deluxe" : "Suite"));
-        roomDetails += "\n" + "Room Description: " + desc + "\n" + "Room Capacity    : " + capacity + "\n"
-                + "Room Availability: " + (available ? "Yes" : "No") + "\n";
-        return roomDetails;
     }
 }
