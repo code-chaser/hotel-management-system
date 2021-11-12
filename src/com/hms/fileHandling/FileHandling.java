@@ -20,7 +20,7 @@ class ThreadForRoomsRead implements Runnable {
         String line = "";
         try {
             // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br1 = new BufferedReader(new FileReader("resources/rooms.csv"));
+            BufferedReader br1 = new BufferedReader(new FileReader("../resources/rooms.csv"));
             while ((line = br1.readLine()) != null) // returns a Boolean value
             {
                 String[] roomArray = line.split(","); // use comma as separator
@@ -47,7 +47,7 @@ class ThreadForStaffRead implements Runnable {
         String line = "";
         try {
             // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br2 = new BufferedReader(new FileReader("resources/staff.csv"));
+            BufferedReader br2 = new BufferedReader(new FileReader("../resources/staff.csv"));
             while ((line = br2.readLine()) != null) // returns a Boolean value
             {
                 String[] staffArray = line.split(","); // use comma as separator
@@ -73,7 +73,7 @@ class ThreadForGuestsRead implements Runnable {
         String line = "";
         try {
             // parsing a CSV file into BufferedReader class constructor
-            BufferedReader br3 = new BufferedReader(new FileReader("resources/guests.csv"));
+            BufferedReader br3 = new BufferedReader(new FileReader("../resources/guests.csv"));
             while ((line = br3.readLine()) != null) // returns a Boolean value
             {
                 String[] guestsArray = line.split(","); // use comma as separator
@@ -100,7 +100,7 @@ class ThreadForRoomsWrite implements Runnable {
     @Override
     public void run() {
         try {
-            FileWriter clearFile1 = new FileWriter("resources/rooms.csv");
+            FileWriter clearFile1 = new FileWriter("../resources/rooms.csv");
             clearFile1.write("");
             clearFile1.close();
         } catch (Exception e) {
@@ -110,7 +110,7 @@ class ThreadForRoomsWrite implements Runnable {
             Room _room = entry.getValue();
 
             try {
-                FileWriter writer1 = new FileWriter("resources/rooms.csv", true);
+                FileWriter writer1 = new FileWriter("../resources/rooms.csv", true);
                 /**
                  * Structure of rooms.csv : roomNumber | capacity | desc | roomSize | available
                  */
@@ -140,7 +140,7 @@ class ThreadForStaffWrite implements Runnable {
     @Override
     public void run() {
         try {
-            FileWriter clearFile2 = new FileWriter("resources/staff.csv");
+            FileWriter clearFile2 = new FileWriter("../resources/staff.csv");
             clearFile2.write("");
             clearFile2.close();
         } catch (Exception e) {
@@ -151,7 +151,7 @@ class ThreadForStaffWrite implements Runnable {
             Staff _staff = entry.getValue();
 
             try {
-                FileWriter writer2 = new FileWriter("resources/staff.csv", true);
+                FileWriter writer2 = new FileWriter("../resources/staff.csv", true);
                 /**
                  * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
                  * category | type | salary | workingDays | LoginID | Password
@@ -186,7 +186,7 @@ class ThreadForGuestsWrite implements Runnable {
     @Override
     public void run() {
         try {
-            FileWriter clearFile3 = new FileWriter("resources/guests.csv");
+            FileWriter clearFile3 = new FileWriter("../resources/guests.csv");
             clearFile3.write("");
             clearFile3.close();
         } catch (Exception e) {
@@ -196,7 +196,7 @@ class ThreadForGuestsWrite implements Runnable {
             Guest _guest = entry.getValue();
 
             try {
-                FileWriter writer3 = new FileWriter("resources/guests.csv", true);
+                FileWriter writer3 = new FileWriter("../resources/guests.csv", true);
                 /**
                  * Structure of staff.csv : id | name | age | gender | mobileNumber | address |
                  * category | aadharNumber | Rooms Vector...
@@ -308,57 +308,6 @@ public class FileHandling {
             System.out.println(e);
         }
 
-        return;
-    }
-
-    public static void main(String[] args) {
-        Room room1 = new Room(true, false, 1, "Single", 100, 1);
-        Room room2 = new Room(true, false, 2, "Double", 200, 2);
-        Room room3 = new Room(true, false, 3, "Triple", 300, 3);
-        Address address1 = new Address();
-        Address address2 = new Address();
-        Address address3 = new Address();
-        Address address4 = new Address();
-        Address address5 = new Address();
-        Address address6 = new Address();
-        Staff staff1 = new Staff(1, "Ayush", 19, 'M', "9876543210", address1, "Staff", "Manager", "10000", 123, "gg",
-                "ayush");
-        Staff staff2 = new Staff(2, "Rohit", 20, 'M', "9876543211", address2, "Staff", "Manager", "10000", 123, "gg",
-                "rohit");
-        Staff staff3 = new Staff(3, "Raj", 21, 'M', "9876543212", address3, "Staff", "Manager", "10000", 123, "gg",
-                "raj");
-        Vector<Integer> roomNumVect1 = new Vector<>();
-        Vector<Integer> roomNumVect2 = new Vector<>();
-        Vector<Integer> roomNumVect3 = new Vector<>();
-        roomNumVect1.add(1);
-        roomNumVect1.add(2);
-        roomNumVect1.add(3);
-        roomNumVect2.add(4);
-        roomNumVect2.add(5);
-        roomNumVect2.add(6);
-        roomNumVect3.add(7);
-        roomNumVect3.add(8);
-        roomNumVect3.add(9);
-        Guest guest1 = new Guest(1, "Ayush", 19, 'M', "9876543210", address4, "Student", "1234567890123", roomNumVect1);
-        Guest guest2 = new Guest(2, "Rohit", 20, 'M', "9876543211", address5, "Student", "1234567890123", roomNumVect2);
-        Guest guest3 = new Guest(3, "Raj", 21, 'M', "9876543212", address6, "Student", "1234567890123", roomNumVect3);
-        Hotel.roomsList.put(1, room1);
-        Hotel.roomsList.put(2, room2);
-        Hotel.roomsList.put(3, room3);
-        Hotel.staffList.put(1, staff1);
-        Hotel.staffList.put(2, staff2);
-        Hotel.staffList.put(3, staff3);
-        Hotel.guestsList.put(1, guest1);
-        Hotel.guestsList.put(2, guest2);
-        Hotel.guestsList.put(3, guest3);
-        writeToCSV();
-        Hotel.roomsList.clear();
-        Hotel.staffList.clear();
-        Hotel.guestsList.clear();
-        readFromCSV();
-        Hotel.printRoomDetails();
-        Hotel.printStaffDetails();
-        Hotel.printGuestDetails();
         return;
     }
 

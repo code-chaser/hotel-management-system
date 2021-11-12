@@ -15,7 +15,6 @@ abstract class Person {
     public Person() {
         id = -1;
     }
-    // add contructor
 
     public Person(Integer id, String name, Integer age, Character gender, String mobNumber, com.hms.persons.Address add,
             String cat) {
