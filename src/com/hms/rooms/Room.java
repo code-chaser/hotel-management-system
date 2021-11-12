@@ -5,16 +5,12 @@ import java.io.*;
 import com.hms.*;
 
 public class Room {
-    public static void main(String[] args) {
-        Room room1 = new Room();
-        room1.checkIn();
-        room1.checkOut();
-    }
 
     protected Integer roomNumber;
     protected Integer capacity;
     protected String desc;
     protected Integer roomSize = 3;
+    // 1 : 
     protected boolean available;
     protected boolean occupied;
 
