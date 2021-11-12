@@ -107,7 +107,6 @@ public class Main {
                             temp_staff.getDetails();
                             if (temp_staff.getId().equals(-1))
                                 break;
-                            // System.out.println("kya change karoge? \n type \n salary \n password");
                             System.out.print("\n---------------------------\n");
                             System.out.print("\nEnter the field you want to change: ");
                             System.out.println("[01] Staff Type");

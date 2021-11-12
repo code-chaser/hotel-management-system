@@ -10,13 +10,6 @@ public class Staff extends Person {
     protected String loginId;
     protected String password;
 
-    public static void main(String[] args) {
-        Staff staff = new Staff();
-        staff.addPerson(10, 200);
-        staff.addPerson(10, 200);
-        staff.getDetails();
-    }
-
     public Staff() {
         id = -1;
         cat = "Staff";
@@ -74,6 +67,16 @@ public class Staff extends Person {
 
     public String getPassword() {
         return password;
+    }
+
+    public void assign(Staff s) {
+        super.assign(s);
+        this.type = s.type;
+        this.salary = s.salary;
+        this.workingDays = s.workingDays;
+        this.loginId = s.loginId;
+        this.password = s.password;
+        return;
     }
 
     public void inputDetails() {
@@ -149,21 +152,11 @@ public class Staff extends Person {
     public void printDetails() {
         if (id == -1)
             return;
-        System.out.println("\nStaff Details:");
+        System.out.print("\nStaff Details:\n");
         super.printDetails();
-        System.out.print("Type            :" + type + "\n");
-        System.out.print("Salary          :" + salary + "\n");
-        System.out.print("Working Days    :" + workingDays + "\n");
-        return;
-    }
-
-    public void assign(Staff s) {
-        super.assign(s);
-        this.type = s.type;
-        this.salary = s.salary;
-        this.workingDays = s.workingDays;
-        this.loginId = s.loginId;
-        this.password = s.password;
+        System.out.print("Type            : " + type + "\n");
+        System.out.print("Salary          : " + salary + "\n");
+        System.out.print("Working Days    : " + workingDays + "\n");
         return;
     }
 
@@ -447,7 +440,7 @@ public class Staff extends Person {
                     }
                 }
             }
-            return;
         }
+        return;
     }
 }
