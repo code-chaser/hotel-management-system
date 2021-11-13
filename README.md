@@ -1,4 +1,4 @@
-# hotel-management-system ![Generic badge](https://img.shields.io/badge/Semester-Project-red.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://en.wikipedia.org/wiki/MIT_License) [![Generic badge](https://img.shields.io/badge/See-Team-purple.svg)](#made-with--by)
+# hotel-management-system ![Generic badge](https://img.shields.io/badge/Semester-Project-red.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://en.wikipedia.org/wiki/MIT_License) [![Generic badge](https://img.shields.io/badge/See-Team-brown.svg)](#made-with--by) [![Generic badge](https://img.shields.io/badge/Download-Code-purple.svg)](https://github.com/code-chaser/hotel-management-system/archive/refs/heads/main.zip)
 ## Introduction 
 a hotel management system, made using object oriented programming and file handling in Java, that keeps records of guests & their bookings, rooms, admins, staff, etc. ...
 ___
