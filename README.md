@@ -1,5 +1,11 @@
-# hotel-management-system &nbsp; ![Generic badge](https://img.shields.io/badge/Semester-Project-red.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/code-chaser/hotel-management-system/blob/main/LICENSE) [![Generic badge](https://img.shields.io/badge/See-Team-blue.svg)](#made-with--by) [![Generic badge](https://img.shields.io/badge/Download-Code-green.svg)](https://github.com/code-chaser/hotel-management-system/archive/refs/heads/main.zip) [![Star: Count](https://img.shields.io/github/forks/code-chaser/hotel-management-system?color=purple&label=Forks)](https://github.com/code-chaser/hotel-management-system/stargazers)
-## Introduction 
+<h1 align="center">hotel-management-system</h1>
+
+<h1 align="center">
+
+![Generic badge](https://img.shields.io/badge/Semester-Project-red?style=for-the-badge) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://github.com/code-chaser/hotel-management-system/blob/main/LICENSE) [![Generic badge](https://img.shields.io/badge/See-Team-blue?style=for-the-badge)](#made-with--by) [![Generic badge](https://img.shields.io/badge/Download-Code-green?style=for-the-badge)](https://github.com/code-chaser/hotel-management-system/archive/refs/heads/main.zip) [![Star: Count](https://img.shields.io/github/forks/code-chaser/hotel-management-system?color=purple&label=Forks&style=for-the-badge)](https://github.com/code-chaser/hotel-management-system/stargazers)
+
+</h1>
+
 A hotel management system, made using object oriented programming and file handling in Java, that keeps records of guests & their bookings, rooms, admins, staff, etc. ...
 ___
 ### Check Out:
